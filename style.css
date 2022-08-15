@@ -1,1 +1,11 @@
 /* initial file */
+
+*{
+    margin: 10px;
+    padding: 10px;
+}
+
+.left {
+    display: inline;
+    justify-content: start;
+}
