@@ -56,9 +56,57 @@ function startAdventure(event) {
 }
 
 // Choose your Spacecraft. Pop up the modal for Choosing your Spacecraft. This is populated using API calls to the starships API. A call needs to be made for each starship. Display the names of starships in buttons. Clicking on a button saves the name of the starship to chosenStarship variable. Calls function chooseDestination. Parameters - an array of starship API URLs from the people API call in startAdventure
+
+// There are 36 starships to choose from, I chose 
+// Millenium Falcon: "https://swapi.dev/api/starships/10/" (Hans Solo)
+// Xwing: "https://swapi.dev/api/starships/12/" (Luke Skywalker)
+// TIEX1: "https://swapi.dev/api/starships/13/" (Darth Vader)
+
+  
+var starship1Btn = document.querySelector('.starship1Btn');
+var starship1Label = document.querySelector('.starship1Label');
+
 function chooseSpacecraft(starships) {
 
-}
+  var starship1 = 'https://swapi.dev/api/starships/10/';
+  var starship2 = 'https://swapi.dev/api/starships/12/';
+  
+
+  // with variables
+  // var starshipId
+  // var starship1variables = 'https://swapi.dev/api/starships/' + starshipId +'/'
+  // could also use a forloop
+
+  fetch(starship1)
+  .then(function (response) {
+      if (response.ok) {
+          return response.json();
+      }
+  })
+  .then(function (data) {
+      console.log(data);
+
+      var starshipLabel = data.name;
+      starship1Label.textContent=starshipLabel;
+
+      // assigns chosen starship from starship (unclear if this is what we want here)
+      var chosenStarship = data.name;
+      console.log(chosenStarship);
+
+      // sets chosen Starship to local storage
+      localStorage.setItem("chosenStarship", JSON.stringify(chosenStarship));
+
+  });
+
+
+  }
+
+// What I have happening is that on click the name is assigned, what we want to happen is the name is assigned on launch of the modal, then the click will be what chooses the starship. Options > create the buttons dynamically pulling the variables from the api via for loop so the forloop is fetching the name of the vehicle. Or hardcode the names of the ships in the modal launch.
+
+starship1Btn.addEventListener("click",chooseSpacecraft);
+    
+
+
 
 // Choose your destination planet. Pop up the modal for Choosing your destination. This is populated by using API calls to pick 3 random planets. These cannot be the homeworld. Need logic to check if homeworld and/or if the planet has already been chosen. Displays each planet name and a circle that is colored based on climate type. (Note: need to define which climate types go to which colors). A planet can be chosen by clicking anywhere in the container for that planet. Call randomSpeciesEncounter. Parameters - starting homeworld API URL
 function chooseDestination(homeworld) {
