@@ -66,9 +66,13 @@ function chooseDestination(homeworld) {
   var homeworldNumber = splitHomeworld[splitHomeworld.length - 1];
   var planets = [homeworldNumber]; // The homeworld is index 0. Possible destinations are index 1, 2, or 3
 
-  var planetNames = [];
-  var planetClimates = [];
-  var planetURLs = [];
+  var planetOne; // Objects with name, climate, URL
+  var planetTwo;
+  var planetThree;
+
+  var planetOneEl = document.getElementById("planet-1-name");
+  var planetTwoEl = document.getElementById("planet-2-name");
+  var planetThreeEl = document.getElementById("planet-3-name");
 
   while (planets.length < 4) {
     var randomPlanetNum = (Math.floor(Math.random() * 60) + 1).toString();
@@ -78,10 +82,10 @@ function chooseDestination(homeworld) {
   }
   console.log(planets);
 
-  for (i = 1; i < 4; i++) {
 
+  function getPlanet(planetNum, planetEl) {
     var queryURLBase = "https://swapi.dev/api/planets";
-    var queryURL = queryURLBase + "/" + planets[i];
+    var queryURL = queryURLBase + "/" + planetNum;
 
     fetch(queryURL)
       .then(function (response) {
@@ -90,14 +94,16 @@ function chooseDestination(homeworld) {
         }
       })
       .then(function (data) {
-        planetNames.push(data.name);
-        planetClimates.push(data.climate);
-        planetURLs.push(data.url);
+        planetEl.textContent = data.name;
+        planetEl.setAttribute("dataclimate", data.climate);
       });
   }
 
-  
+  getPlanet(planets[1], planetOneEl);
+  getPlanet(planets[2], planetTwoEl);
+  getPlanet(planets[3], planetThreeEl);
 
+  console.log(planetOneEl.getAttribute("dataclimate"));
 }
 
 // Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none

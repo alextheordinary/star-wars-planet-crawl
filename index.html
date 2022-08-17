@@ -1,118 +1,145 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Star Wars Planet Crawl</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Star Wars Planet Crawl</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
   <section class="section">
 
 
-<div class = "columns has-background-warning left">
-  <div class="container">
+    <div class="columns has-background-warning left">
+      <div class="container">
 
-    <!-- add hero to contain this content -->
-    <img src = 'https://dummyimage.com/100x100/000/fff'> 
-    <h1 class="title">
-        Star Wars Crawl - Choose Your Own Adventure Game
-      </h1>
-      <p class="subtitle">
-        Some text about the game is here!
-      </p>
-</div>
-</div>    
+        <!-- add hero to contain this content -->
+        <img src='https://dummyimage.com/100x100/000/fff'>
+        <h1 class="title">
+          Star Wars Crawl - Choose Your Own Adventure Game
+        </h1>
+        <p class="subtitle">
+          Some text about the game is here!
+        </p>
+      </div>
+    </div>
 
-  <div class="columns">
-    
-    <div class="column">
-       
+    <div class="columns">
+
+      <div class="column">
+
         <div class="buttons">
           <button class="getCharBtn button is-primary">Get Luke</button>
-           
 
+
+        </div>
+        <!-- Button for choose destination modal -->
+        <button class="js-modal-trigger" data-target="modal-choose-destination">
+          Choose destination
+        </button>
+        <!-- End choose destination button -->
       </div>
+      <button class="js-modal-trigger" data-target="modal-js-example">
+        Open JS example modal
+      </button>
+
+
     </div>
-    <button class="js-modal-trigger" data-target="modal-js-example">
-      Open JS example modal
-    </button>
-
-</div>
 
 
-<div id="modal-js-example" class="modal">
-  <div class="modal-background"></div>
+    <div id="modal-js-example" class="modal">
+      <div class="modal-background"></div>
 
-  <div class="modal-content">
-    <div class="box">
-      <p>Start your Adventure</p>
-      <div class="box">
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong>Luke Skywalker</strong> <small>X-Wing</small> <small>Tatuion</small>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-              </p>
-            </div>
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item" aria-label="reply">
-                  <span class="icon is-small">
-                    <i class="fas fa-reply" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="retweet">
-                  <span class="icon is-small">
-                    <i class="fas fa-retweet" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
-                </a>
+      <div class="modal-content">
+        <div class="box">
+          <p>Start your Adventure</p>
+          <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                </figure>
               </div>
-            </nav>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>Luke Skywalker</strong> <small>X-Wing</small> <small>Tatuion</small>
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla
+                    egestas. Nullam condimentum luctus turpis.
+                  </p>
+                </div>
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                    <a class="level-item" aria-label="reply">
+                      <span class="icon is-small">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                    <a class="level-item" aria-label="retweet">
+                      <span class="icon is-small">
+                        <i class="fas fa-retweet" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                    <a class="level-item" aria-label="like">
+                      <span class="icon is-small">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </article>
           </div>
-        </article>
+          <!-- Your content -->
+        </div>
       </div>
-      <!-- Your content -->
-    </div>
-  </div>
 
-  <button class="modal-close is-large" aria-label="close"></button>
-</div>
-  
- 
-  
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+
 
 
   </section>
 
 
-
-  <div class="modal">
+  <!-- Choose destination modal -->
+  <div class="modal" id="modal-choose-destination">
     <div class="modal-background"></div>
     <div class="modal-content">
-      
-      <!-- Any other Bulma elements you want -->
+      <div class="box">
+        <div class="columns">
+          <div class="column is-full">
+            <div class="box" id="planet-1">
+              <span class="planet-circle"></span>
+              <div id="planet-1-name"></div>
+            </div>
+            <div class="box" id="planet-2">
+              <span class="planet-circle"></span>
+              <div id="planet-2-name"></div>
+            </div>
+            <div class="box" id="planet-3">
+              <span class="planet-circle"></span>
+              <div id="planet-3-name"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- End choose destination modal -->
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-  
+
 
 
 
   <script src="./script.js"></script>
-  </body>
+</body>
+
 </html>
