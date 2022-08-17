@@ -14,6 +14,43 @@
 
 
     <div class="columns has-background-warning left">
+
+      <div class="container">
+
+        <!-- add hero to contain this content -->
+        <img src='https://dummyimage.com/100x100/000/fff'>
+        <h1 class="title">
+          Star Wars Crawl - Choose Your Own Adventure Game
+        </h1>
+        <p class="subtitle">
+          Some text about the game is here!
+        </p>
+      </div>
+    </div>
+
+    <div class="columns">
+
+      <div class="column">
+
+        <div class="buttons">
+          <button class="getCharBtn button is-primary">Get Luke</button>
+
+
+        </div>
+        <!-- Button for choose destination modal -->
+        <button class="js-modal-trigger" data-target="modal-choose-destination">
+          Choose destination
+        </button>
+        <!-- End choose destination button -->
+      </div>
+      <button class="js-modal-trigger" data-target="modal-js-example">
+        Open JS example modal
+      </button>
+
+
+    </div>
+
+
       <div class="container jumbo">
 
         <!-- add hero to contain this content -->
@@ -49,6 +86,7 @@
 
       <div class="modal-content">
         <div class="box">
+
           <div class="content">
             <!-- inherited from startAdventure -->
             <h2 class="character">Luke Skywalker</h2>
@@ -123,13 +161,45 @@
 
 
 
+
+
+
   </section>
 
 
-
-  <div class="modal">
+  <!-- Choose destination modal -->
+  <div class="modal" id="modal-choose-destination">
     <div class="modal-background"></div>
     <div class="modal-content">
+      <div class="box">
+        <div class="columns">
+          <div class="column is-full">
+            <div class="box" id="planet-1">
+              <span class="planet-circle"></span>
+              <div id="planet-1-name"></div>
+            </div>
+            <div class="box" id="planet-2">
+              <span class="planet-circle"></span>
+              <div id="planet-2-name"></div>
+            </div>
+            <div class="box" id="planet-3">
+              <span class="planet-circle"></span>
+              <div id="planet-3-name"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End choose destination modal -->
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+
+
+
+
+
+
 
       <!-- Any other Bulma elements you want -->
 
@@ -138,6 +208,7 @@
 
 
       <script src="./script.js"></script>
+
 </body>
 
 </html>
