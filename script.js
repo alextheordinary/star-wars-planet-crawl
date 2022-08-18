@@ -286,5 +286,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode === 27) { // Escape key
       closeAllModals();
     }
-  });
 });
