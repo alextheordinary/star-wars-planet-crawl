@@ -32,38 +32,19 @@
 
       <div class="column">
 
-        <div class="buttons">
-          <button class="getCharBtn button is-primary">Get Luke</button>
-
-
-        </div>
+      
         <!-- Button for choose destination modal -->
         <button class="js-modal-trigger" data-target="modal-choose-destination">
           Choose destination
         </button>
         <!-- End choose destination button -->
       </div>
-      <button class="js-modal-trigger" data-target="modal-js-example">
-        Open JS example modal
-      </button>
-
+     
 
     </div>
 
 
-      <div class="container jumbo">
-
-        <!-- add hero to contain this content -->
-        <img src='https://dummyimage.com/100x100/000/fff'>
-        <h1 class="title">
-          Star Wars Crawl - Choose Your Own Adventure Game
-        </h1>
-        <p class="subtitle">
-          Some text about the game is here!
-        </p>
-      </div>
-    </div>
-
+      
     <div class="columns">
 
       <div class="column">
@@ -74,10 +55,22 @@
             Choose Your Starship
           </button>
 
+         
+
         </div>
       </div>
 
 
+    </div>
+
+    <div class="columns">
+      <div class="column">
+      <div class="buttons">
+        <button class="js-modal-trigger button is-primary" data-target="modal-start-adventure">
+          Start Your Adventure
+        </button>
+      </div>
+      </div>
     </div>
 
     <!-- Starships Modal -->
@@ -190,7 +183,33 @@
         </div>
       </div>
     </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
     <!-- End choose destination modal -->
+
+
+     <!-- Start Adventure modal -->
+  <div class="modal" id="modal-start-adventure">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <div class="columns">
+          <div class="column is-full">
+            <div class="box" id="character-1">
+              <div id="character-1-name"></div>
+            </div>
+            <div class="box" id="character-2">
+              <div id="character-2-name"></div>
+            </div>
+            <div class="box" id="character-3">
+              <div id="character-3-name"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- End start adventure modal -->
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 

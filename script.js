@@ -43,6 +43,7 @@ function testSWAPI() {
 //testBored();
 //testSWAPI();
 chooseDestination("https://swapi.dev/api/planets/1");
+startAdventure();
 
 // For testing purposes
 //var dummyStarships = ["https://swapi.dev/api/starships/12/", "https://swapi.dev/api/starships/13/"] ;
@@ -52,8 +53,38 @@ chooseDestination("https://swapi.dev/api/planets/1");
 
 // Start the Adventure. Reset variables. Pop up the modal for Choose Your Character. 3 random characters (from a predetermined list) for name and portrait will be displayed. A character can be chosen by clicking anywhere in the container for that character. Clicking on that character stores the character name, character number, homeworld, and starships in global variables. Calls function chooseSpacecraft()
 function startAdventure(event) {
+var characters = ["1", "4", "9", "10"];
+var charactersSelected = [];
+var characterOneEl = document.querySelector('#character-1-name');
+var characterTwoEl = document.querySelector('#character-2-name');
+var characterThreeEl = document.querySelector('#character-3-name');
+var characterElArray = [characterOneEl, characterTwoEl, characterThreeEl];
 
-}
+
+while (charactersSelected.length < 3) {
+    var randomCharacterNum = (Math.floor(Math.random() * 4) + 1).toString();
+    if (charactersSelected.indexOf(randomCharacterNum) === -1) {
+      charactersSelected.push(characters[randomCharacterNum]);
+    }
+  }
+  console.log(charactersSelected);
+
+for (var i = 0; i < 3; i++){
+    var queryURLBase = "https://swapi.dev/api/people";
+    var queryURL = queryURLBase + "/" + charactersSelected[i];
+  fetch(queryURL)
+  .then(function (response) {
+      if (response.ok) {
+          return response.json();
+      }
+  })
+  .then(function (data) {
+      console.log(data);
+
+    characterElArray[i].textContent = data.name;
+
+  }
+)}}
 
 // Choose your Spacecraft. Pop up the modal for Choosing your Spacecraft. This is populated using API calls to the starships API. A call needs to be made for each starship. Display the names of starships in buttons. Clicking on a button saves the name of the starship to chosenStarship variable. Calls function chooseDestination. Parameters - an array of starship API URLs from the people API call in startAdventure
 
