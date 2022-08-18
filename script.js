@@ -55,18 +55,24 @@ startAdventure();
 function startAdventure(event) {
 var characters = ["1", "4", "9", "10"];
 var charactersSelected = [];
+var characterOneEl = document.querySelector('#character-1-name');
+var characterTwoEl = document.querySelector('#character-2-name');
+var characterThreeEl = document.querySelector('#character-3-name');
+var characterElArray = [characterOneEl, characterTwoEl, characterThreeEl];
 
 
 while (charactersSelected.length < 3) {
     var randomCharacterNum = (Math.floor(Math.random() * 4) + 1).toString();
     if (charactersSelected.indexOf(randomCharacterNum) === -1) {
-      charactersSelected.push(randomCharacterNum);
+      charactersSelected.push(characters[randomCharacterNum]);
     }
   }
   console.log(charactersSelected);
 
 for (var i = 0; i < 3; i++){
-  fetch(charactersSelected[i])
+    var queryURLBase = "https://swapi.dev/api/people";
+    var queryURL = queryURLBase + "/" + charactersSelected[i];
+  fetch(queryURL)
   .then(function (response) {
       if (response.ok) {
           return response.json();
@@ -75,7 +81,7 @@ for (var i = 0; i < 3; i++){
   .then(function (data) {
       console.log(data);
 
-  
+    characterElArray[i].textContent = data.name;
 
   }
 )}}
