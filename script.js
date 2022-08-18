@@ -13,7 +13,7 @@ var destinationURL;
 var chooseDestButtonEl = document.querySelector("#choose-dest-button");
 var logButtonEl = document.querySelector("#log-planet-one");
 chooseDestButtonEl.addEventListener("click", chooseDestination);
-logButtonEl.addEventListener("click", logPlanetOne);
+
 // End variables for chooseDestination
 
 // Test function for calling the Bored API
@@ -153,7 +153,7 @@ starship1Btn.addEventListener("click", chooseSpacecraft);
 function chooseDestination(event) {
   event.preventDefault();
   var chooseDestModalEL = document.querySelector("#modal-choose-destination");
-  chooseDestModalEL.classList.add("is-active");
+
 
   var splitHomeworld = homeworld.split("/");
   var homeworldNumber = splitHomeworld[splitHomeworld.length - 1];
@@ -171,7 +171,7 @@ function chooseDestination(event) {
     }
   }
 
-  // Makes a fetch request to the planets API
+  // Makes a fetch request to the planets API. Sets the data attributes for name, climate, and url using api response data and then makes the modal active. Still need to alter background color of circle class elements based on climate.
   function getPlanet(planetNum, planetEl) {
     var queryURLBase = "https://swapi.dev/api/planets";
     var queryURL = queryURLBase + "/" + planetNum;
@@ -188,6 +188,7 @@ function chooseDestination(event) {
         planetEl.setAttribute("data-climate", data.climate);
         planetEl.setAttribute("data-url", data.url);
         planetEl.addEventListener("click", makeChoice);
+        chooseDestModalEL.classList.add("is-active"); // Shows the modal
       });
   }
 
@@ -203,18 +204,13 @@ function chooseDestination(event) {
     console.log(destinationClimate);
     console.log(destinationURL);
 
-    chooseDestModalEL.classList.remove("is-active");
+    chooseDestModalEL.classList.remove("is-active"); // Hides the modal
   }
 
   getPlanet(planets[1], planetOneEl);
   getPlanet(planets[2], planetTwoEl);
   getPlanet(planets[3], planetThreeEl);
 
-}
-
-function logPlanetOne() {
-  var planetOneEl = document.querySelector("#planet-1-name");
-  console.log(planetOneEl.textContent);
 }
 
 // Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none
