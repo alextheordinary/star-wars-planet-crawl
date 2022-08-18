@@ -217,6 +217,22 @@ function chooseDestination(event) {
 function randomSpeciesEncounter() {
 
 }
+//kerri making math things
+/*while (creature.length < 3) {
+    var randomCreatureNum = (Math.floor(Math.random() * 20) + 1).toString();
+    if (creatures.indexOf(randomCreatureNum) === -1) {
+      planets.push(randomPlanetNum);
+    }
+  }*/
+
+/*var randomSpeciesEncounter = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+  
+    return value;
+  };*/
+  
+  
+
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
 function reachDestination(destinationName, climate) {
@@ -270,5 +286,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode === 27) { // Escape key
       closeAllModals();
     }
-  });
 });
