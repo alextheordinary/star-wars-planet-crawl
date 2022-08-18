@@ -214,7 +214,7 @@ function chooseDestination(event) {
 }
 
 // Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none
-function randomSpeciesEncounter(event) {
+function randomSpeciesEncounter() {
 
 }
 //kerri making math things
