@@ -53,38 +53,42 @@ startAdventure();
 
 // Start the Adventure. Reset variables. Pop up the modal for Choose Your Character. 3 random characters (from a predetermined list) for name and portrait will be displayed. A character can be chosen by clicking anywhere in the container for that character. Clicking on that character stores the character name, character number, homeworld, and starships in global variables. Calls function chooseSpacecraft()
 function startAdventure(event) {
-var characters = ["1", "4", "9", "10"];
-var charactersSelected = [];
-var characterOneEl = document.querySelector('#character-1-name');
-var characterTwoEl = document.querySelector('#character-2-name');
-var characterThreeEl = document.querySelector('#character-3-name');
-var characterElArray = [characterOneEl, characterTwoEl, characterThreeEl];
+  var characters = ["1", "4", "9", "10"];
+  var charactersSelected = [];
+  var characterOneEl = document.querySelector('#character-1-name');
+  var characterTwoEl = document.querySelector('#character-2-name');
+  var characterThreeEl = document.querySelector('#character-3-name');
+  var characterElArray = [characterOneEl, characterTwoEl, characterThreeEl];
+  console.log(characterElArray);
 
 
-while (charactersSelected.length < 3) {
-    var randomCharacterNum = (Math.floor(Math.random() * 4) + 1).toString();
-    if (charactersSelected.indexOf(randomCharacterNum) === -1) {
+  while (charactersSelected.length < 3) {
+    var randomCharacterNum = (Math.floor(Math.random() * 4)).toString();
+    if (charactersSelected.indexOf(characters[randomCharacterNum]) === -1) {
       charactersSelected.push(characters[randomCharacterNum]);
     }
   }
   console.log(charactersSelected);
 
-for (var i = 0; i < 3; i++){
+  for (var i = 0; i < 3; i++) {
     var queryURLBase = "https://swapi.dev/api/people";
+    console.log(charactersSelected[i]);
     var queryURL = queryURLBase + "/" + charactersSelected[i];
-  fetch(queryURL)
-  .then(function (response) {
-      if (response.ok) {
+    fetch(queryURL)
+      .then(function (response) {
+        if (response.ok) {
           return response.json();
+        }
+      })
+      .then(function (data) {
+        console.log(data);
+        console.log(characterElArray[i]);
+        characterElArray[i].textContent = data.name;
+
       }
-  })
-  .then(function (data) {
-      console.log(data);
-
-    characterElArray[i].textContent = data.name;
-
+      )
   }
-)}}
+}
 
 // Choose your Spacecraft. Pop up the modal for Choosing your Spacecraft. This is populated using API calls to the starships API. A call needs to be made for each starship. Display the names of starships in buttons. Clicking on a button saves the name of the starship to chosenStarship variable. Calls function chooseDestination. Parameters - an array of starship API URLs from the people API call in startAdventure
 
@@ -93,7 +97,7 @@ for (var i = 0; i < 3; i++){
 // Xwing: "https://swapi.dev/api/starships/12/" (Luke Skywalker)
 // TIEX1: "https://swapi.dev/api/starships/13/" (Darth Vader)
 
-  
+
 var starship1Btn = document.querySelector('.starship1Btn');
 var starship1Label = document.querySelector('.starship1Label');
 
@@ -101,7 +105,7 @@ function chooseSpacecraft(starships) {
 
   var starship1 = 'https://swapi.dev/api/starships/10/';
   var starship2 = 'https://swapi.dev/api/starships/12/';
-  
+
 
   // with variables
   // var starshipId
@@ -109,16 +113,16 @@ function chooseSpacecraft(starships) {
   // could also use a forloop
 
   fetch(starship1)
-  .then(function (response) {
+    .then(function (response) {
       if (response.ok) {
-          return response.json();
+        return response.json();
       }
-  })
-  .then(function (data) {
+    })
+    .then(function (data) {
       console.log(data);
 
       var starshipLabel = data.name;
-      starship1Label.textContent=starshipLabel;
+      starship1Label.textContent = starshipLabel;
 
       // assigns chosen starship from starship (unclear if this is what we want here)
       var chosenStarship = data.name;
@@ -127,15 +131,15 @@ function chooseSpacecraft(starships) {
       // sets chosen Starship to local storage
       localStorage.setItem("chosenStarship", JSON.stringify(chosenStarship));
 
-  });
+    });
 
 
-  }
+}
 
 // What I have happening is that on click the name is assigned, what we want to happen is the name is assigned on launch of the modal, then the click will be what chooses the starship. Options > create the buttons dynamically pulling the variables from the api via for loop so the forloop is fetching the name of the vehicle. Or hardcode the names of the ships in the modal launch.
 
-starship1Btn.addEventListener("click",chooseSpacecraft);
-    
+starship1Btn.addEventListener("click", chooseSpacecraft);
+
 
 
 
