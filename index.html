@@ -32,19 +32,22 @@
 
       <div class="column">
 
-      
+
         <!-- Button for choose destination modal -->
-        <button class="js-modal-trigger" data-target="modal-choose-destination">
+        <button class="js-modal-trigger" id="choose-dest-button" data-target="modal-choose-destination">
           Choose destination
+        </button>
+        <button id="log-planet-one">
+          Log Planet One
         </button>
         <!-- End choose destination button -->
       </div>
-     
+
 
     </div>
 
 
-      
+
     <div class="columns">
 
       <div class="column">
@@ -55,7 +58,7 @@
             Choose Your Starship
           </button>
 
-         
+
 
         </div>
       </div>
@@ -65,11 +68,11 @@
 
     <div class="columns">
       <div class="column">
-      <div class="buttons">
-        <button class="js-modal-trigger button is-primary" data-target="modal-start-adventure">
-          Start Your Adventure
-        </button>
-      </div>
+        <div class="buttons">
+          <button class="js-modal-trigger button is-primary" data-target="modal-start-adventure">
+            Start Your Adventure
+          </button>
+        </div>
       </div>
     </div>
 
@@ -168,16 +171,16 @@
         <div class="columns">
           <div class="column is-full">
             <div class="box" id="planet-1">
-              <span class="planet-circle"></span>
-              <div id="planet-1-name"></div>
+              <span class="planet-circle" id="circle-1"></span>
+              <div class="planet-name" id="planet-1-name"></div>
             </div>
             <div class="box" id="planet-2">
-              <span class="planet-circle"></span>
-              <div id="planet-2-name"></div>
+              <span class="planet-circle" id="circle-2"></span>
+              <div class="planet-name" id="planet-2-name"></div>
             </div>
             <div class="box" id="planet-3">
-              <span class="planet-circle"></span>
-              <div id="planet-3-name"></div>
+              <span class="planet-circle" id="circle-3"></span>
+              <div class="planet-name" id="planet-3-name"></div>
             </div>
           </div>
         </div>
@@ -185,10 +188,10 @@
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
-    <!-- End choose destination modal -->
+  <!-- End choose destination modal -->
 
 
-     <!-- Start Adventure modal -->
+  <!-- Start Adventure modal -->
   <div class="modal" id="modal-start-adventure">
     <div class="modal-background"></div>
     <div class="modal-content">
@@ -208,7 +211,7 @@
         </div>
       </div>
     </div>
-  
+
     <!-- End start adventure modal -->
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
@@ -220,13 +223,13 @@
 
 
 
-      <!-- Any other Bulma elements you want -->
+  <!-- Any other Bulma elements you want -->
 
 
 
 
 
-      <script src="./script.js"></script>
+  <script src="./script.js"></script>
 
 </body>
 

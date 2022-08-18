@@ -3,11 +3,18 @@
 // Variables
 var characterName;
 var characterNumber;
-var homeworld;
+var homeworld = "https://swapi.dev/api/planets/1"; // Temporary variable value
 var starships = []; // Array of API URLs for vehicles associated with the character
 var chosenStarship;
+// Variables for chooseDestination
 var destinationName;
 var destinationClimate;
+var destinationURL;
+var chooseDestButtonEl = document.querySelector("#choose-dest-button");
+var logButtonEl = document.querySelector("#log-planet-one");
+chooseDestButtonEl.addEventListener("click", chooseDestination);
+logButtonEl.addEventListener("click", logPlanetOne);
+// End variables for chooseDestination
 
 // Test function for calling the Bored API
 function testBored() {
@@ -42,8 +49,7 @@ function testSWAPI() {
 
 //testBored();
 //testSWAPI();
-chooseDestination("https://swapi.dev/api/planets/1");
-startAdventure();
+//startAdventure();
 
 // For testing purposes
 //var dummyStarships = ["https://swapi.dev/api/starships/12/", "https://swapi.dev/api/starships/13/"] ;
@@ -144,28 +150,28 @@ starship1Btn.addEventListener("click", chooseSpacecraft);
 
 
 // Choose your destination planet. Pop up the modal for Choosing your destination. This is populated by using API calls to pick 3 random planets. These cannot be the homeworld. Need logic to check if homeworld and/or if the planet has already been chosen. Displays each planet name and a circle that is colored based on climate type. (Note: need to define which climate types go to which colors). A planet can be chosen by clicking anywhere in the container for that planet. Call randomSpeciesEncounter. Parameters - starting homeworld API URL
-function chooseDestination(homeworld) {
+function chooseDestination(event) {
+  event.preventDefault();
+  var chooseDestModalEL = document.querySelector("#modal-choose-destination");
+  chooseDestModalEL.classList.add("is-active");
+
   var splitHomeworld = homeworld.split("/");
   var homeworldNumber = splitHomeworld[splitHomeworld.length - 1];
   var planets = [homeworldNumber]; // The homeworld is index 0. Possible destinations are index 1, 2, or 3
 
-  var planetOne; // Objects with name, climate, URL
-  var planetTwo;
-  var planetThree;
+  var planetOneEl = document.querySelector("#planet-1");
+  var planetTwoEl = document.querySelector("#planet-2");
+  var planetThreeEl = document.querySelector("#planet-3");
 
-  var planetOneEl = document.getElementById("planet-1-name");
-  var planetTwoEl = document.getElementById("planet-2-name");
-  var planetThreeEl = document.getElementById("planet-3-name");
-
+  // This while loop will keep generating random numbers between 1 and 60 until the array has 4 unique values
   while (planets.length < 4) {
     var randomPlanetNum = (Math.floor(Math.random() * 60) + 1).toString();
     if (planets.indexOf(randomPlanetNum) === -1) {
       planets.push(randomPlanetNum);
     }
   }
-  console.log(planets);
 
-
+  // Makes a fetch request to the planets API
   function getPlanet(planetNum, planetEl) {
     var queryURLBase = "https://swapi.dev/api/planets";
     var queryURL = queryURLBase + "/" + planetNum;
@@ -177,16 +183,38 @@ function chooseDestination(homeworld) {
         }
       })
       .then(function (data) {
-        planetEl.textContent = data.name;
-        planetEl.setAttribute("dataclimate", data.climate);
+        planetEl.querySelector(".planet-name").textContent = data.name;
+        planetEl.setAttribute("data-name", data.name);
+        planetEl.setAttribute("data-climate", data.climate);
+        planetEl.setAttribute("data-url", data.url);
+        planetEl.addEventListener("click", makeChoice);
       });
+  }
+
+  function makeChoice(event) {
+    var boxEl = event.target.closest(".box");
+    planetOneEl.removeEventListener("click", makeChoice);
+    planetTwoEl.removeEventListener("click", makeChoice);
+    planetThreeEl.removeEventListener("click", makeChoice);
+    destinationName = boxEl.dataset.name;
+    destinationClimate = boxEl.dataset.climate;
+    destinationURL = boxEl.dataset.url;
+    console.log(destinationName);
+    console.log(destinationClimate);
+    console.log(destinationURL);
+
+    chooseDestModalEL.classList.remove("is-active");
   }
 
   getPlanet(planets[1], planetOneEl);
   getPlanet(planets[2], planetTwoEl);
   getPlanet(planets[3], planetThreeEl);
 
-  console.log(planetOneEl.getAttribute("dataclimate"));
+}
+
+function logPlanetOne() {
+  var planetOneEl = document.querySelector("#planet-1-name");
+  console.log(planetOneEl.textContent);
 }
 
 // Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none
