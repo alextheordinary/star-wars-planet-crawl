@@ -214,9 +214,25 @@ function chooseDestination(event) {
 }
 
 // Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none
-function randomSpeciesEncounter() {
+function randomSpeciesEncounter(event) {
 
 }
+//kerri making math things
+/*while (creature.length < 3) {
+    var randomCreatureNum = (Math.floor(Math.random() * 20) + 1).toString();
+    if (creatures.indexOf(randomCreatureNum) === -1) {
+      planets.push(randomPlanetNum);
+    }
+  }*/
+
+/*var randomSpeciesEncounter = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+  
+    return value;
+  };*/
+  
+  
+
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
 function reachDestination(destinationName, climate) {
