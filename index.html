@@ -29,40 +29,31 @@
     </div>
 
     <div class="columns">
-
       <div class="column">
 
 
         <!-- Button for choose destination modal -->
-        <button class="js-modal-trigger button is-primary" id="choose-dest-button" data-target="modal-choose-destination">
+        <button class="js-modal-trigger button is-primary" id="choose-dest-button"
+          data-target="modal-choose-destination">
           Choose destination
         </button>
         <!-- End choose destination button -->
       </div>
-
-
     </div>
 
-
+    <!-- Start Choose Starship Button -->
 
     <div class="columns">
-
       <div class="column">
-
         <div class="buttons">
-
-          <button class="js-modal-trigger button is-primary" data-target="modal-js-example">
+          <button class="js-modal-trigger button is-primary" id="choose-starship-button" data-target="modal-choose-starship">
             Choose Your Starship
           </button>
-
-
-
         </div>
       </div>
 
 
     </div>
-
     <div class="columns">
       <div class="column">
         <div class="buttons">
@@ -73,78 +64,37 @@
       </div>
     </div>
 
-    <!-- Starships Modal -->
-    <div id="modal-js-example" class="modal">
-      <div class="modal-background"></div>
+  
 
+    <!-- Starships Modal Revised -->
+    <div class="modal" id="modal-choose-starship">
+      <div class="modal-background"></div>
       <div class="modal-content">
         <div class="box">
-
-          <div class="content">
-            <!-- inherited from startAdventure -->
-            <h2 class="character">Luke Skywalker</h2>
-
-            <h3>Choose Your Starship</h3>
-          </div>
-          <div class="box">
-            <div class="tile">
-              <div class="tile is-ancestor">
-                <div class="tile is-4">
-                  <!-- 1/3 -->
-                  <div class="starship1">
-                    <p class="starship1Label">
-                      <strong>starship1</strong>
-                    </p>
-
-                    <button class="starship1Btn">
-                      <figure class="image is-128x128">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                      </figure>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="tile is-4">
-                  <div class="starship2">
-                    <p class="starship2">
-                      <strong>starship2</strong>
-                    </p>
-                    <button>
-                      <figure class="image is-128x128">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                      </figure>
-                    </button>
-                  </div>
-                  <!-- 1/3 -->
-                </div>
-
-
-                <div class="tile is-4">
-                  <div class="starship3">
-                    <p class="starship3">
-                      <strong>starship3</strong>
-                    </p>
-                    <button>
-                      <figure class="image is-128x128">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                      </figure>
-                    </button>
-                  </div>
-                </div>
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="starship-1">
+                <span class="starship-square"></span>
+                <div class="starship-name"></div>
               </div>
-            </div>
-            <button class="modal-close is-large" aria-label="close"></button>
-
-            <div class="media-left">
-
+              <div class="box" id="starship-2">
+                <span class="starship-square"></span>
+                <div class="starship-name"></div>
+              </div>
+              <div class="box" id="starship-3">
+                <span class="starship-square"></span>
+                <div class="starship-name"></div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- End choose destination modal -->
 
 
       </div>
-
-    </div>
     </div>
 
 
@@ -214,80 +164,83 @@
   </div>
 
 
-  
+
 
 
 
   <div class="columns">
-  <div class="column">
-  <div class="buttons">
-    <button class="js-modal-trigger button is-primary" data-target="modal-js-example">
+    <div class="column">
+      <div class="buttons">
+        <button class="js-modal-trigger button is-primary" data-target="modal-js-example">
           Your Creature Encounter
         </button>
-    </div>
-
-  <div id="modal-js-example" class="modal">
-  <div class="modal-background"></div>
-  <div class="modal-content">
-    <div class="box">
-
-    <div class="content">
-      <h2 class="character"></h2>
-      <h3>Your Creature</h3>
       </div>
-      <div class="box">
-      <div class="tile">
-      <div class="tile is-ancestor">
-      <div class="tile is-4">
-                <!-- 1/3 -->
-      <div class="creature1">
-       <p class="creature1Label">
-        <strong>Creature1</strong></p>
-      <button class="creature1Btn">
-        <figure class="image is-128x128">
-         <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-            </figure>
-            </button>
+
+      <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+
+            <div class="content">
+              <h2 class="character"></h2>
+              <h3>Your Creature</h3>
+            </div>
+            <div class="box">
+              <div class="tile">
+                <div class="tile is-ancestor">
+                  <div class="tile is-4">
+                    <!-- 1/3 -->
+                    <div class="creature1">
+                      <p class="creature1Label">
+                        <strong>Creature1</strong>
+                      </p>
+                      <button class="creature1Btn">
+                        <figure class="image is-128x128">
+                          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                        </figure>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="tile is-4">
+                    <div class="creature2">
+                      <p class="creature2">
+                        <strong>Creature2</strong>
+                      </p>
+                      <button>
+                        <figure class="image is-128x128">
+                          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                        </figure>
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <div class="tile is-4">
+                    <div class="creature3">
+                      <p class="creature3">
+                        <strong>Creature3</strong>
+                      </p>
+                      <button>
+                        <figure class="image is-128x128">
+                          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                        </figure>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <button class="modal-close is-large" aria-label="close"></button>
+              <div class="media-left">
+
               </div>
-
-      <div class="tile is-4">
-        <div class="creature2">
-         <p class="creature2">
-        <strong>Creature2</strong></p>
-        <button>
-        <figure class="image is-128x128">
-        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-          </figure>
-          </button>
-          </div>
+            </div>
           </div>
 
-
-    <div class="tile is-4">
-      <div class="creature3">
-      <p class="creature3">
-        <strong>Creature3</strong></p>
-        <button>
-        <figure class="image is-128x128">
-        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-        </figure>
-        </button>
-          </div>
-          </div>
-          </div>
-          </div>
-           <button class="modal-close is-large" aria-label="close"></button>
-           <div class="media-left">
-
-     </div>
+        </div>
       </div>
-       </div>
-
     </div>
-     </div>
-      </div>
-       </div>
+  </div>
 
 
 

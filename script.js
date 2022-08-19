@@ -4,6 +4,7 @@
 var characterName;
 var characterNumber;
 var homeworld = "https://swapi.dev/api/planets/1"; // Temporary variable value
+var starshipsUrl = "https://swapi.dev/api/starships/1";
 var starships = []; // Array of API URLs for vehicles associated with the character
 var chosenStarship;
 // Variables for chooseDestination
@@ -13,6 +14,8 @@ var destinationURL;
 var chooseDestButtonEl = document.querySelector("#choose-dest-button");
 var logButtonEl = document.querySelector("#log-planet-one");
 chooseDestButtonEl.addEventListener("click", chooseDestination);
+var chooseSpacecraftButtonEl = document.querySelector('#choose-starship-button')
+chooseSpacecraftButtonEl.addEventListener("click", chooseSpacecraft);
 
 // End variables for chooseDestination
 
@@ -104,47 +107,64 @@ function startAdventure(event) {
 // TIEX1: "https://swapi.dev/api/starships/13/" (Darth Vader)
 
 
-var starship1Btn = document.querySelector('.starship1Btn');
-var starship1Label = document.querySelector('.starship1Label');
-
-function chooseSpacecraft(starships) {
-
-  var starship1 = 'https://swapi.dev/api/starships/10/';
-  var starship2 = 'https://swapi.dev/api/starships/12/';
 
 
-  // with variables
-  // var starshipId
-  // var starship1variables = 'https://swapi.dev/api/starships/' + starshipId +'/'
-  // could also use a forloop
 
-  fetch(starship1)
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      }
-    })
-    .then(function (data) {
-      console.log(data);
+function chooseSpacecraft(event) {
+  event.preventDefault();
+  var starshipOneEl = document.querySelector("#starship-1");
+  var starshipTwoEl = document.querySelector("#starship-2");
+  var starshipThreeEl = document.querySelector("#starship-3");
+  var chooseStarshipModalEL = document.querySelector("#modal-choose-starship");
 
-      var starshipLabel = data.name;
-      starship1Label.textContent = starshipLabel;
 
-      // assigns chosen starship from starship (unclear if this is what we want here)
-      var chosenStarship = data.name;
-      console.log(chosenStarship);
 
-      // sets chosen Starship to local storage
-      localStorage.setItem("chosenStarship", JSON.stringify(chosenStarship));
+  // This while loop will keep generating random numbers between 1 and 60 until the array has 4 unique values
 
-    });
+  var queryURLBase = "https://swapi.dev/api/starships";
+  var queryURL = queryURLBase + "/" + starshipNum;
 
+
+  // max at 3 ships, if array is null don't run code
+
+  function getSpacecraft(starshipNum, starshipEl) {
+
+    fetch(queryURL)
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(function (data) {
+        starshipEl.querySelector(".starship-name").textContent = data.name;
+        starshipEl.setAttribute("data-name", data.name);
+        starshipEl.setAttribute("data-url", data.url);
+        starshipEl.addEventListener("click", makeChoice);
+        chooseStarshipModalEL.classList.add("is-active"); // Shows the modal
+      });
+  }
+
+  function makeChoice(event) {
+    var boxEl = event.target.closest(".box");
+    starshipOneEl.removeEventListener("click", makeChoice);
+    starshipTwoEl.removeEventListener("click", makeChoice);
+    starshipThreeEl.removeEventListener("click", makeChoice);
+    starshipName = boxEl.dataset.name;
+    starshipURL = boxEl.dataset.url;
+    console.log(starshipName);
+    console.log(starshipURL);
+
+    chooseStarshipModalEL.classList.remove("is-active"); // Hides the modal
+  }
+
+  // if starships [0] === null hide boxes use is-hidden
+
+  getSpacecraft(starships[0], starshipOneEl);
+  getSpacecraft(starships[1], starshipTwoEl);
+  getSpacecraft(starships[2], starshipThreeEl);
 
 }
-
-// What I have happening is that on click the name is assigned, what we want to happen is the name is assigned on launch of the modal, then the click will be what chooses the starship. Options > create the buttons dynamically pulling the variables from the api via for loop so the forloop is fetching the name of the vehicle. Or hardcode the names of the ships in the modal launch.
-
-starship1Btn.addEventListener("click", chooseSpacecraft);
+// starship1Btn.addEventListener("click", chooseSpacecraft);
 
 
 
@@ -230,8 +250,8 @@ function randomSpeciesEncounter() {
   
     return value;
   };*/
-  
-  
+
+
 
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
@@ -286,4 +306,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode === 27) { // Escape key
       closeAllModals();
     }
+  });
 });

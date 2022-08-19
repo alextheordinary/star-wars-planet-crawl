@@ -22,3 +22,22 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+
+.starship-square {
+    height: 50px;
+    width: 50px;
+    background-color: orange;
+    border-radius: 15%;
+    display: inline-block;
+}
+
+.starship-triangle {
+    #triangle-up {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid red;
+      }
+}
