@@ -5,14 +5,35 @@
 
     margin: 10px;
     padding: 10px;
-
+    background-image: url("HeaderImg.png");
+    background-size:110% 105%;
 }
 
+.title {
+    color: white;
+    font-weight: bold;
+    font-size: 300%;
+    -webkit-text-stroke: 1px black;
+    }
+
+.subtitle {
+    color: white;
+    font-weight: bold;
+    font-size: 200%;
+    -webkit-text-stroke: 1px black
+}
+
+.charImage {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100px;
+}
 
 .left {
     display: inline;
     justify-content: start;
-}
+    }
 
 
 .planet-circle {
@@ -32,10 +53,11 @@
     display: inline-block;
 }
 
-.starship-triangle {
+.creature-triangle {
     width: 0;
     height: 0;
     border-left: 50px solid transparent;
     border-right: 50px solid transparent;
     border-bottom: 100px solid red;
 }
+
