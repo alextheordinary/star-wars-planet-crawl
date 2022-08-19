@@ -3,8 +3,8 @@
 // Variables
 var characterName;
 var characterNumber;
-var homeworld = "https://swapi.dev/api/planets/1"; // Temporary variable value
 var starshipsUrl = "https://swapi.dev/api/starships/1";
+var homeworld ;
 var starships = []; // Array of API URLs for vehicles associated with the character
 var chosenStarship;
 // Variables for chooseDestination
@@ -17,8 +17,13 @@ chooseDestButtonEl.addEventListener("click", chooseDestination);
 var chooseSpacecraftButtonEl = document.querySelector('#choose-starship-button')
 chooseSpacecraftButtonEl.addEventListener("click", chooseSpacecraft);
 
-// End variables for chooseDestination
 
+// End variables for chooseDestination
+// Variables for start adventure
+var startAdvButtonEl = document.querySelector("#start-adv-button");
+startAdvButtonEl.addEventListener("click", startAdventure);
+var characterURL;
+// End variables for start adventure
 // Test function for calling the Bored API
 function testBored() {
   var queryURL = "http://www.boredapi.com/api/activity/";
@@ -62,27 +67,27 @@ function testSWAPI() {
 
 // Start the Adventure. Reset variables. Pop up the modal for Choose Your Character. 3 random characters (from a predetermined list) for name and portrait will be displayed. A character can be chosen by clicking anywhere in the container for that character. Clicking on that character stores the character name, character number, homeworld, and starships in global variables. Calls function chooseSpacecraft()
 function startAdventure(event) {
+  event.preventDefault();
+  var startAdvModalEL = document.querySelector("#modal-start-adventure");
   var characters = ["1", "4", "9", "10"];
   var charactersSelected = [];
-  var characterOneEl = document.querySelector('#character-1-name');
-  var characterTwoEl = document.querySelector('#character-2-name');
-  var characterThreeEl = document.querySelector('#character-3-name');
-  var characterElArray = [characterOneEl, characterTwoEl, characterThreeEl];
-  console.log(characterElArray);
+  var charOneEl = document.querySelector("#character-1");
+  var charTwoEl = document.querySelector("#character-2");
+  var charThreeEl = document.querySelector("#character-3");
 
 
   while (charactersSelected.length < 3) {
-    var randomCharacterNum = (Math.floor(Math.random() * 4)).toString();
-    if (charactersSelected.indexOf(characters[randomCharacterNum]) === -1) {
-      charactersSelected.push(characters[randomCharacterNum]);
+    var randomCharNum = (Math.floor(Math.random() * 4)).toString();
+    if (charactersSelected.indexOf(characters[randomCharNum]) === -1) {
+      charactersSelected.push(characters[randomCharNum]);
     }
   }
-  console.log(charactersSelected);
 
-  for (var i = 0; i < 3; i++) {
+
+  function getCharacter(charNum, charEl) {
     var queryURLBase = "https://swapi.dev/api/people";
-    console.log(charactersSelected[i]);
-    var queryURL = queryURLBase + "/" + charactersSelected[i];
+    var queryURL = queryURLBase + "/" + charNum;
+
     fetch(queryURL)
       .then(function (response) {
         if (response.ok) {
@@ -90,13 +95,38 @@ function startAdventure(event) {
         }
       })
       .then(function (data) {
-        console.log(data);
-        console.log(characterElArray[i]);
-        characterElArray[i].textContent = data.name;
-
-      }
-      )
+        charEl.querySelector(".character-name").textContent = data.name;
+        charEl.setAttribute("data-name", data.name);
+        charEl.setAttribute("data-url", data.url);
+        charEl.setAttribute("data-homeworld", data.homeworld);
+        charEl.setAttribute("data-starships", data.starships.toString());
+        charEl.addEventListener("click", makeChoice);
+        startAdvModalEL.classList.add("is-active"); // Shows the modal
+      });
   }
+
+  function makeChoice(event) {
+    var boxEl = event.target.closest(".box");
+    charOneEl.removeEventListener("click", makeChoice);
+    charTwoEl.removeEventListener("click", makeChoice);
+    charThreeEl.removeEventListener("click", makeChoice);
+    characterName = boxEl.dataset.name;
+    characterURL = boxEl.dataset.url;
+    starships = boxEl.dataset.starships.split(",");
+    homeworld = boxEl.dataset.homeworld;
+    console.log(characterName);
+    console.log(characterURL);
+    console.log(starships);
+    console.log(homeworld);
+
+    startAdvModalEL.classList.remove("is-active"); // Hides the modal
+  }
+
+  getCharacter(charactersSelected[0], charOneEl);
+  getCharacter(charactersSelected[1], charTwoEl);
+  getCharacter(charactersSelected[2], charThreeEl);
+
+
 }
 
 // Choose your Spacecraft. Pop up the modal for Choosing your Spacecraft. This is populated using API calls to the starships API. A call needs to be made for each starship. Display the names of starships in buttons. Clicking on a button saves the name of the starship to chosenStarship variable. Calls function chooseDestination. Parameters - an array of starship API URLs from the people API call in startAdventure
@@ -306,5 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode === 27) { // Escape key
       closeAllModals();
     }
-  });
+
+});
 });
