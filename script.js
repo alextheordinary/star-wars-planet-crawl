@@ -151,13 +151,13 @@ function chooseSpacecraft(event) {
 
   // This while loop will keep generating random numbers between 1 and 60 until the array has 4 unique values
 
-  var queryURLBase = "https://swapi.dev/api/starships";
-  var queryURL = queryURLBase + "/" + starshipNum;
+
 
 
   // max at 3 ships, if array is null don't run code
 
   function getSpacecraft(starshipNum, starshipEl) {
+    var queryURL = starshipNum;
 
     fetch(queryURL)
       .then(function (response) {
