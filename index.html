@@ -19,7 +19,7 @@
           Star Wars Crawl - Choose Your Own Adventure Game
         </h1>
         <p class="subtitle">
-          Click Start Your Adventure to Play 
+          Click Start Your Adventure to Play
         </p>
       </div>
     </div>
@@ -28,46 +28,58 @@
       <div class="column ">
 
 
-      <!-- Start Your Adventure Button -->
+        <!-- Start Your Adventure Button -->
 
-    
+
+        <div class="columns">
+          <div class="column">
+            <div class="buttons">
+              <button class="js-modal-trigger button is-primary is-large" data-target="modal-start-adventure"
+                id="start-adv-button">
+                Choose Character
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- End Start Your Adventure Button -->
+
+
+
+        <!-- Start Choose Starship Button -->
+
+        <div class="columns">
+          <div class="column">
+            <div class="buttons">
+              <button class="js-modal-trigger button is-primary is-large" id="choose-starship-button"
+                data-target="modal-choose-starship">
+                Choose Your Starship
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- End Choose Starship Button -->
+        
     <div class="columns">
       <div class="column">
         <div class="buttons">
-          <button class="js-modal-trigger button is-primary is-large" data-target="modal-start-adventure" id="start-adv-button">
-            Start Your Adventure
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- End Start Your Adventure Button -->
-
-
-
-    <!-- Start Choose Starship Button -->
-
-    <div class="columns">
-      <div class="column">
-        <div class="buttons">
-          <button class="js-modal-trigger button is-primary is-large" id="choose-starship-button"
-            data-target="modal-choose-starship">
-            Choose Your Starship
-          </button>
-        </div>
-      </div>
-    </div>
-<!-- End Choose Starship Button -->
-
-
-      <!-- Button for choose destination modal -->
-        <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
+          <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
           data-target="modal-choose-destination">
           Choose destination
         </button>
         </div>
+      </div>
     </div>
-<!-- End choose destination button -->
+
+    <div class="columns">
+      <div class="column">
+        <div class="buttons">
+          <button class="js-modal-trigger button is-primary is-large" id="encounter-button" data-target="modal-encounter">
+            Start Journey
+          </button>
+        </div>
+      </div>
+    </div>
 
 
     <!-- Starships Modal Revised -->
@@ -150,7 +162,7 @@
       </div>
     </div>
   </div>
- </div>
+  </div>
   <!-- End start adventure modal -->
 
   <!-- Creature Interaction modal -->

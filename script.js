@@ -4,7 +4,7 @@
 var characterName;
 var characterNumber;
 var starshipsUrl = "https://swapi.dev/api/starships/1";
-var homeworld ;
+var homeworld;
 var starships = []; // Array of API URLs for vehicles associated with the character
 var chosenStarship;
 // Variables for chooseDestination
@@ -16,6 +16,8 @@ var logButtonEl = document.querySelector("#log-planet-one");
 chooseDestButtonEl.addEventListener("click", chooseDestination);
 var chooseSpacecraftButtonEl = document.querySelector('#choose-starship-button')
 chooseSpacecraftButtonEl.addEventListener("click", chooseSpacecraft);
+var encounterButtonEl = document.querySelector("#encounter-button");
+encounterButtonEl.addEventListener("click", randomSpeciesEncounter);
 
 
 // End variables for chooseDestination
@@ -24,6 +26,10 @@ var startAdvButtonEl = document.querySelector("#start-adv-button");
 startAdvButtonEl.addEventListener("click", startAdventure);
 var characterURL;
 // End variables for start adventure
+// Variables for randomSpeciesEncounter
+var encounterSpecies;
+var encounterTask;
+// End variables for randomSpecies
 // Test function for calling the Bored API
 function testBored() {
   var queryURL = "http://www.boredapi.com/api/activity/";
@@ -146,13 +152,9 @@ function chooseSpacecraft(event) {
   var starshipTwoEl = document.querySelector("#starship-2");
   var starshipThreeEl = document.querySelector("#starship-3");
   var chooseStarshipModalEL = document.querySelector("#modal-choose-starship");
-
-
-
-  // This while loop will keep generating random numbers between 1 and 60 until the array has 4 unique values
-
-
-
+  starshipOneEl.querySelector(".starship-name").textContent = "";
+  starshipTwoEl.querySelector(".starship-name").textContent = "";
+  starshipThreeEl.querySelector(".starship-name").textContent = "";
 
   // max at 3 ships, if array is null don't run code
 
@@ -212,6 +214,10 @@ function chooseDestination(event) {
   var planetOneEl = document.querySelector("#planet-1");
   var planetTwoEl = document.querySelector("#planet-2");
   var planetThreeEl = document.querySelector("#planet-3");
+  planetOneEl.querySelector(".planet-name").textContent = "";
+  planetTwoEl.querySelector(".planet-name").textContent = "";
+  planetThreeEl.querySelector(".planet-name").textContent = "";
+
 
   // This while loop will keep generating random numbers between 1 and 60 until the array has 4 unique values
   while (planets.length < 4) {
@@ -264,7 +270,47 @@ function chooseDestination(event) {
 }
 
 // Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none
-function randomSpeciesEncounter() {
+function randomSpeciesEncounter(event) {
+  event.preventDefault();
+  var randomSpecies = (Math.floor(Math.random() * 37)).toString();
+
+
+  function getSpecies(speciesNum) {
+    var queryURLBase = "https://swapi.dev/api/species/";
+    var queryURL = queryURLBase + speciesNum;
+
+    fetch(queryURL)
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(function (data) {
+        console.log(data);
+        encounterSpecies = data.name;
+        console.log(encounterSpecies);
+      });
+  }
+
+  function getActivity() {
+    var queryURL = "http://www.boredapi.com/api/activity/";
+
+    fetch(queryURL)
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(function (data) {
+        console.log(data);
+        encounterTask = data.activity;
+        console.log(encounterTask);
+      });
+  }
+
+  getSpecies(randomSpecies);
+  getActivity();
+
 
 }
 //kerri making math things
@@ -294,48 +340,3 @@ function startCrawl() {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
-
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
-
-  function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-      closeModal($modal);
-    });
-  }
-
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
-  });
-
-  // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
-
-    $close.addEventListener('click', () => {
-      closeModal($target);
-    });
-  });
-
-  // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
-    const e = event || window.event;
-
-    if (e.keyCode === 27) { // Escape key
-      closeAllModals();
-    }
-
-});
-});
