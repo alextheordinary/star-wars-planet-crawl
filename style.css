@@ -1,9 +1,40 @@
 /* initial file */
 
-p{
+p {
     font-size: 150%;
 }
 
+.box {
+    font-size: 115%;
+    
+}
+
+#chosen-character-text 
+{
+    font-size: 150%;
+    font-weight: bold;
+    
+}
+
+#chosen-starship-text 
+{
+    font-size: 150%;
+    font-weight: bold;
+    
+}
+
+#chosen-destination-text 
+{
+    font-size: 150%;
+    font-weight: bold;
+    
+}
+
+.fun-color1 {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    margin: 10px;
+    
+}
 
 .jumbo {
 
@@ -28,9 +59,9 @@ p{
 }
 
 .charImage {
-    border: 2px solid #00d1b2;
+    border: 5px solid #1f00d1;
     border-radius: 4px;
-    padding: 5px;
+    
     width: 100px;
 }
 
@@ -51,8 +82,7 @@ p{
 .chosen-planet-circle {
     height: 50px;
     width: 50px;
-    background: rgb(115, 150, 190);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(90deg, rgb(218, 75, 18) 25%, rgb(9, 121, 74) 35%, rgba(0,212,255,1) 100%);
     border-radius: 50%;
     display: inline-block;
 
