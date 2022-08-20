@@ -350,20 +350,20 @@ function randomSpeciesEncounter(event) {
       });
   }
 
-  function getActivity() {
-    var queryURL = "http://www.boredapi.com/api/activity/";
+  function getQuestion() {
+    var queryURL = "https://opentdb.com/api.php?amount=1&category=19&difficulty=easy&type=boolean";
 
-    fetch(queryURL, {referrerPolicy: "unsafe-url"})
+    fetch(queryURL)
       .then(function (response) {
+        console.log(response);
         if (response.ok) {
           return response.json();
         }
       })
       .then(function (data) {
-        console.log(data);
-        encounterTask = data.activity;
+        console.log(data.results[0]);
+        encounterTask = data.results[0].question;
         console.log(encounterTask);
-        // encounterTaskTextEl.textContent = encounterTask;
         var encounterTaskEl = document.querySelector("#encounter-task-text");
         encounterTaskEl.textContent = encounterTask;
 
@@ -371,7 +371,7 @@ function randomSpeciesEncounter(event) {
   }
 
   getSpecies(randomSpecies);
-  getActivity();
+  getQuestion();
 
 
   // Displays creature encounter modal
