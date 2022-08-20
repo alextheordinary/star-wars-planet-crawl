@@ -22,6 +22,11 @@ var chosenCharacterTextEl = document.querySelector("#chosen-character-text");
 var chosenStarshipTextEl = document.querySelector("#chosen-starship-text");
 var chosenDestinationTextEl = document.querySelector("#chosen-destination-text");
 var journeyCount ; 
+var chosenSpeciesTextEl = document.querySelector("#chosen-species-text");
+var chosenPlanet = document.querySelector("#chosenPlanet");
+var encounterTaskTextEl = document.querySelector('#encounterTask');
+
+
 
 
 // End variables for chooseDestination
@@ -124,7 +129,7 @@ function startAdventure(event) {
     characterURL = boxEl.dataset.url;
     starships = boxEl.dataset.starships.split(",");
     homeworld = boxEl.dataset.homeworld;
-    chosenCharacterTextEl.textContent = characterName;
+    chosenCharacterTextEl.textContent = 'You are now '+ characterName;
     console.log(characterName);
     console.log(characterURL);
     console.log(starships);
@@ -272,6 +277,7 @@ function chooseDestination(event) {
         planetEl.setAttribute("data-url", data.url);
         planetEl.addEventListener("click", makeChoice);
         chooseDestModalEL.classList.add("is-active"); // Shows the modal
+        
       });
   }
 
@@ -293,6 +299,7 @@ function chooseDestination(event) {
     chooseSpacecraftButtonEl.classList.add("is-hidden");
     chooseDestButtonEl.classList.add("is-hidden");
     encounterButtonEl.classList.remove("is-hidden");
+    chosenPlanet.textContent = destinationName;
   }
 
   getPlanet(planets[1], planetOneEl);
@@ -310,7 +317,7 @@ function randomSpeciesEncounter(event) {
   function getSpecies(speciesNum) {
     var queryURLBase = "https://swapi.dev/api/species/";
     var queryURL = queryURLBase + speciesNum;
-
+        
     fetch(queryURL)
       .then(function (response) {
         if (response.ok) {
@@ -321,6 +328,9 @@ function randomSpeciesEncounter(event) {
         console.log(data);
         encounterSpecies = data.name;
         console.log(encounterSpecies);
+
+        chosenSpeciesTextEl.textContent=encounterSpecies;
+
       });
   }
 
@@ -337,6 +347,7 @@ function randomSpeciesEncounter(event) {
         console.log(data);
         encounterTask = data.activity;
         console.log(encounterTask);
+        encounterTaskTextEl.textContent=encounterTask;
       });
   }
 

@@ -25,15 +25,11 @@
       </div>
     </div>
 
-    <div class="columns">
-      <div class="column ">
-
-
+    <div class="columns is-multiline">
+      
         <!-- Start Your Adventure Button -->
-
-
-        <div class="columns">
-          <div class="column">
+       
+          <div class="column is-one-third">
             <div class="buttons">
               <button class="js-modal-trigger button is-primary is-large" data-target="modal-start-adventure"
                 id="start-adv-button">
@@ -42,7 +38,7 @@
               <div id="chosen-character-text"></div>
             </div>
           </div>
-        </div>
+        
 
         <!-- End Start Your Adventure Button -->
 
@@ -50,8 +46,8 @@
 
         <!-- Start Choose Starship Button -->
 
-        <div class="columns">
-          <div class="column">
+        
+          <div class="column is-one-third">
             <div class="buttons">
               <button class="js-modal-trigger button is-primary is-large" id="choose-starship-button"
                 data-target="modal-choose-starship">
@@ -60,11 +56,11 @@
               <div id="chosen-starship-text"></div>
             </div>
           </div>
-        </div>
+       
         <!-- End Choose Starship Button -->
 
-        <div class="columns">
-          <div class="column">
+        
+          <div class="column is-one-third">
             <div class="buttons">
               <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
                 data-target="modal-choose-destination">
@@ -74,9 +70,10 @@
             </div>
           </div>
         </div>
-
-        <div class="columns">
-          <div class="column">
+        
+<!-- Can't get this to next line to center -->
+        <div class="columns is-centered">
+          <div class="column is-full">
             <div class="buttons">
               <button class="js-modal-trigger button is-primary is-large" id="encounter-button"
                 data-target="modal-encounter">
@@ -85,6 +82,10 @@
             </div>
           </div>
         </div>
+
+      
+        
+       
 
 
         <!-- Starships Modal Revised -->
@@ -114,10 +115,8 @@
         </div>
         <!-- End choose destination modal -->
 
-      </div>
-    </div>
-    </div>
-  </section>
+     
+    
 
   <!-- Choose destination modal -->
   <div class="modal" id="modal-choose-destination">
@@ -167,7 +166,7 @@
       </div>
     </div>
   </div>
-  </div>
+  
   <!-- End start adventure modal -->
 
   <!-- Creature Interaction modal -->
@@ -178,9 +177,9 @@
               <div class="columns">
                 <div class="column is-full">
                   <div class="box" id="destination-1">
-                    <p>Oh No! <span class="randomCreature">[random creature name]</span> has stopped you and given you a special task that you must complete before you can reach <span class="chosenPlanet">[chosen planet name]</span>.</p>
+                    <p>Oh No! <span id="chosen-species-text">[random creature name]</span> has stopped you and given you a special task that you must complete before you can reach <span id="chosenPlanet">[chosen planet name]</span>.</p>
 
-                    <p>You must first <span class="encounterTask">[encounter task here]</span> before you can proceed.</p>
+                    <p>You must first <span id="encounterTask">[encounter task here]</span> before you can proceed.</p>
                     <button class ='button is-primary is-large' id="completeTask"> Complete Task</button>
                               
                    </div>
@@ -208,15 +207,14 @@
         </div>
       </div>
     </div>
-  </div>
-  </div>
+ 
   <!-- End Reach Destination interaction modal -->
 
 
   <!-- Any other Bulma elements you want -->
 
   <!-- Crawl Text -->
-  <div class="box" id="crawl">
+  <div class="box is-full is-centered" id="crawl">
     <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span
         class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>,
       encountered <span class="randomSpecies">[random species here]</span> and completed <span
