@@ -5,8 +5,8 @@ var characterName;
 var characterNumber;
 var starshipsUrl = "https://swapi.dev/api/starships/1";
 var homeworld;
+var homeworldName;
 var starships = []; // Array of API URLs for vehicles associated with the character
-var chosenStarship;
 // Variables for chooseDestination
 var destinationName;
 var destinationClimate;
@@ -29,9 +29,18 @@ var reachDestinationModalEl = document.querySelector("#modal-reach-destination")
 var startCrawlButtonEl = document.querySelector("#start-crawl");
 startCrawlButtonEl.addEventListener("click", startCrawl);
 var reachDestPlanetTextEl = document.querySelector("#reach-dest-planet-text");
+
+var crawlCharacterEl = document.querySelector("#crawl-character");
+var crawlStarShipEl = document.querySelector("#crawl-starship")
+var crawlDestinationEl = document.querySelector("#crawl-destination");
+var crawlSpeciesEl = document.querySelector("#crawl-species");
+var crawlTaskEl = document.querySelector("#crawl-task");
+var crawlHomeworldEl = document.querySelector("#crawl-homeworld");
+
 var completeTaskButtonEl = document.querySelector("#completeTask");
 completeTaskButtonEl.addEventListener("click", reachDestination);
 var creatureInteractionModalEL = document.querySelector("#modal-creature-interaction");
+
 
 
 // End variables for chooseDestination
@@ -364,6 +373,7 @@ function randomSpeciesEncounter(event) {
   getSpecies(randomSpecies);
   getActivity();
 
+
   // Displays creature encounter modal
 
   // var startJourneyButtonEl = document.querySelector("#encounter-button")
@@ -396,6 +406,13 @@ function startCrawl() {
   journeyCount++;
   console.log(journeyCount);
   localStorage.setItem("journey-count", JSON.stringify(journeyCount));
+
+crawlCharacterEl.textContent = characterName;
+crawlStarShipEl.textContent = starshipName;
+crawlDestinationEl.textContent = destinationName;
+crawlSpeciesEl.textContent = encounterSpecies;
+crawlTaskEl.textContent = encounterTask;
+crawlHomeworldEl.textContent = homeworldName;
 }
 
 function init() {
