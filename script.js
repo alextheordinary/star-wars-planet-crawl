@@ -31,12 +31,13 @@ var crawlCharacterEl = document.querySelector("#crawl-character");
 var crawlStarShipEl = document.querySelector("#crawl-starship")
 var crawlDestinationEl = document.querySelector("#crawl-destination");
 var crawlSpeciesEl = document.querySelector("#crawl-species");
-var crawlTaskEl = document.querySelector("#crawl-task");
 var crawlHomeworldEl = document.querySelector("#crawl-homeworld");
 var crawlModalEl = document.querySelector("#modal-story-crawl");
 
-var completeTaskButtonEl = document.querySelector("#completeTask");
-completeTaskButtonEl.addEventListener("click", reachDestination);
+var trueButtonEl = document.querySelector("#true-button");
+trueButtonEl.addEventListener("click", reachDestination);
+var falseButtonEl = document.querySelector("#false-button");
+falseButtonEl.addEventListener("click", reachDestination);
 var creatureInteractionModalEL = document.querySelector("#modal-creature-interaction");
 var closeCrawlButtonEl = document.querySelector("#close-crawl")
 closeCrawlButtonEl.addEventListener("click", closeCrawl);
@@ -53,6 +54,13 @@ var characterURL;
 // Variables for randomSpeciesEncounter
 var encounterSpecies;
 var encounterTask;
+var encounterAnswer;
+var encounterCorrectAnswer;
+var quizResult;
+var encounterQuizResultEl = document.querySelector("#quiz-result");
+var isYouTextEl = document.querySelector("#is-you-text");
+var correctCount;
+var correctCountEl = document.querySelector("#correct-count-text");
 // End variables for randomSpecies
 // Test function for calling the Bored API
 function testBored() {
@@ -145,10 +153,6 @@ function startAdventure(event) {
     starships = boxEl.dataset.starships.split(",");
     homeworld = boxEl.dataset.homeworld;
     chosenCharacterTextEl.textContent = 'You are now ' + characterName;
-    console.log(characterName);
-    console.log(characterURL);
-    console.log(starships);
-    console.log(homeworld);
 
     startAdvModalEL.classList.remove("is-active"); // Hides the modal
     startAdvButtonEl.classList.add("is-hidden");
@@ -218,8 +222,6 @@ function chooseSpacecraft(event) {
     starshipName = boxEl.dataset.name;
     starshipURL = boxEl.dataset.url;
     chosenStarshipTextEl.textContent = 'Your starship is ' + starshipName;
-    console.log(starshipName);
-    console.log(starshipURL);
 
 
 
@@ -305,9 +307,6 @@ function chooseDestination(event) {
     destinationClimate = boxEl.dataset.climate;
     destinationURL = boxEl.dataset.url;
     chosenDestinationTextEl.textContent = 'Your destination is the planet ' + destinationName;
-    console.log(destinationName);
-    console.log(destinationClimate);
-    console.log(destinationURL);
 
     chooseDestModalEL.classList.remove("is-active"); // Hides the modal
     startAdvButtonEl.classList.add("is-hidden");
@@ -339,9 +338,7 @@ function randomSpeciesEncounter(event) {
         }
       })
       .then(function (data) {
-        console.log(data);
         encounterSpecies = data.name;
-        console.log(encounterSpecies);
 
         chosenSpeciesTextEl.textContent = encounterSpecies;
         var chosenSpeciesCreatureInteractionEl = document.querySelector("#chosen-species-text");
@@ -351,22 +348,20 @@ function randomSpeciesEncounter(event) {
   }
 
   function getQuestion() {
-    var queryURL = "https://opentdb.com/api.php?amount=1&category=19&difficulty=easy&type=boolean";
+    var queryURL = "https://opentdb.com/api.php?amount=1&category=9&type=boolean";
 
     fetch(queryURL)
       .then(function (response) {
-        console.log(response);
         if (response.ok) {
           return response.json();
         }
       })
       .then(function (data) {
-        console.log(data.results[0]);
         encounterTask = data.results[0].question;
-        console.log(encounterTask);
         var encounterTaskEl = document.querySelector("#encounter-task-text");
-        encounterTaskEl.textContent = encounterTask;
-
+        encounterTaskEl.innerHTML = encounterTask;
+        encounterCorrectAnswer = data.results[0].correct_answer;
+        console.log("Correct answer " + encounterCorrectAnswer);
       });
   }
 
@@ -394,8 +389,16 @@ function randomSpeciesEncounter(event) {
 }
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
-function reachDestination() {
+function reachDestination(event) {
+  encounterAnswer = event.target.dataset.answer;
   reachDestPlanetTextEl.textContent = destinationName;
+  quizResult = encounterAnswer === encounterCorrectAnswer;
+  if (quizResult) {
+    encounterQuizResultEl.textContent = "You answer correctly and you are sent on your way to great fanfare by the " + encounterSpecies ;
+    correctCount++;
+  } else {
+    encounterQuizResultEl.textContent = "The " + encounterSpecies + " are disgusted by your lack of knowledge and banish you from their presence."
+  }
   creatureInteractionModalEL.classList.remove("is-active");
   reachDestinationModalEl.classList.add("is-active");
 }
@@ -404,15 +407,20 @@ function reachDestination() {
 function startCrawl() {
   reachDestinationModalEl.classList.remove("is-active");
   journeyCount++;
-  console.log(journeyCount);
   localStorage.setItem("journey-count", JSON.stringify(journeyCount));
+  localStorage.setItem("correct-count", JSON.stringify(correctCount));
 
   crawlCharacterEl.textContent = characterName;
   crawlStarShipEl.textContent = starshipName;
   crawlDestinationEl.textContent = destinationName;
   crawlSpeciesEl.textContent = encounterSpecies;
-  crawlTaskEl.textContent = encounterTask;
   crawlEpisodeTextEl .textContent = journeyCount;
+  correctCountEl.textContent = correctCount;
+  if (quizResult) {
+    isYouTextEl.textContent = "A winner is you!"
+  } else {
+    isYouTextEl.textContent = "A loser is you!" 
+  }
 
   crawlModalEl.classList.add("is-active");
 }
@@ -430,15 +438,24 @@ function init() {
   chosenCharacterTextEl.textContent = ""; 
   chosenStarshipTextEl.textContent = "";  
   chosenDestinationTextEl.textContent = ""; 
+  encounterAnswer = null;
+  encounterCorrectAnswer = null;
+  quizResult = null;
+
 
   // Pull journey-count from local storage and set variable journeyCount equal to it if it's not null
   var storedJourneyCount = JSON.parse(localStorage.getItem("journey-count"));
+  var storedCorrectCount = JSON.parse(localStorage.getItem("correct-count"));
   if (storedJourneyCount !== null) {
     journeyCount = storedJourneyCount;
   } else {
     journeyCount = 0;
   }
-
+  if (storedCorrectCount !== null) {
+    correctCount = storedCorrectCount;
+  } else {
+    correctCount = 0;
+  }
 }
 
 init();
