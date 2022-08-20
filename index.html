@@ -167,30 +167,27 @@
   <!-- End start adventure modal -->
 
   <!-- Creature Interaction modal -->
-  <div class="modal" id="modal-creature-interaction">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="box">
-        <div class="columns">
-          <div class="column is-full">
-            <div class="box" id="creature-1">
-              <span class="creature-triangle"></span>
-              <div class="creature-name"></div>
-            </div>
-            <div class="box" id="creature-2">
-              <span class="creature-triangle"></span>
-              <div class="creature-name"></div>
-            </div>
-            <div class="box" id="creature-3">
-              <span class="creature-triangle"></span>
-              <div class="creature-name"></div>
+       <div class="modal" id="modal-creature-interaction">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <div class="columns">
+                <div class="column is-full">
+                  <div class="box" id="destination-1">
+                    <p>Oh No! <span class="randomCreature">[random creature name]</span> has stopped you and given you a special task that you must complete before you can reach <span class="chosenPlanet">[chosen planet name]</span>.</p>
+
+                    <p>You must first <span class="encounterTask">[encounter task here]</span> before you can proceed.</p>
+                    <button class ='button is-primary is-large' id="completeTask"> Complete Task</button>
+                              
+                   </div>
+                 </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- End creature interaction modal -->
+        <!-- End Creature Interaction modal -->
+    
 
   <!-- Reach Destination Modal -->
   <div class="modal" id="modal-reach-destination">
@@ -200,10 +197,9 @@
         <div class="columns">
           <div class="column is-full">
             <div class="box" id="destination-1">
-              <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>, encountered <span class="randomSpecies">[random species here]</span> and completed <span class="randomTask">[random task here].</span></p>
+              <p>You have reached your destination <span class="chosenPlanet">[chosen planet name here]</span><span class="chosen-planet-circle"></span></p>
                         
-              <div class="creature-name"></div>
-            </div>
+             </div>
            </div>
           </div>
         </div>
@@ -214,9 +210,12 @@
 
 
   <!-- Any other Bulma elements you want -->
+
+  <!-- Crawl Text -->
   <div class="box" id="crawl">
     <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>, encountered <span class="randomSpecies">[random species here]</span> and completed <span class="randomTask">[random task here].</span></p>
   </div>
+  <!-- End Crawl Text -->
 
   <script src="./script.js"></script>
 </body>
