@@ -35,10 +35,13 @@ var crawlDestinationEl = document.querySelector("#crawl-destination");
 var crawlSpeciesEl = document.querySelector("#crawl-species");
 var crawlTaskEl = document.querySelector("#crawl-task");
 var crawlHomeworldEl = document.querySelector("#crawl-homeworld");
+var crawlModalEl = document.querySelector("#modal-story-crawl");
 
 var completeTaskButtonEl = document.querySelector("#completeTask");
 completeTaskButtonEl.addEventListener("click", reachDestination);
 var creatureInteractionModalEL = document.querySelector("#modal-creature-interaction");
+var closeCrawlButtonEl = document.querySelector("#close-crawl")
+closeCrawlButtonEl.addEventListener("click", closeCrawl);
 
 
 
@@ -382,7 +385,7 @@ function randomSpeciesEncounter(event) {
   chosenPlanetCreatureInteractionEl.textContent = destinationName;
 
 
- 
+
   creatureInteractionModalEL.classList.add("is-active");
 
 
@@ -406,11 +409,17 @@ function startCrawl() {
   console.log(journeyCount);
   localStorage.setItem("journey-count", JSON.stringify(journeyCount));
 
-crawlCharacterEl.textContent = characterName;
-crawlStarShipEl.textContent = starshipName;
-crawlDestinationEl.textContent = destinationName;
-crawlSpeciesEl.textContent = encounterSpecies;
-crawlTaskEl.textContent = encounterTask;
+  crawlCharacterEl.textContent = characterName;
+  crawlStarShipEl.textContent = starshipName;
+  crawlDestinationEl.textContent = destinationName;
+  crawlSpeciesEl.textContent = encounterSpecies;
+  crawlTaskEl.textContent = encounterTask;
+
+  crawlModalEl.classList.add("is-active");
+}
+
+function closeCrawl (){
+  crawlModalEl.classList.remove("is-active");
 }
 
 function init() {

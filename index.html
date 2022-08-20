@@ -26,206 +26,231 @@
     </div>
 
     <div class="columns is-multiline">
-      
-        <!-- Start Your Adventure Button -->
-       
-          <div class="column is-one-third">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large" data-target="modal-start-adventure"
-                id="start-adv-button">
-                Choose Character
-              </button>
-              <div id="chosen-character-text"></div>
-            </div>
-          </div>
-        
 
-        <!-- End Start Your Adventure Button -->
+      <!-- Start Your Adventure Button -->
 
-
-
-        <!-- Start Choose Starship Button -->
-
-        
-          <div class="column is-one-third">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large" id="choose-starship-button"
-                data-target="modal-choose-starship">
-                Choose Your Starship
-              </button>
-              <div id="chosen-starship-text"></div>
-            </div>
-          </div>
-       
-        <!-- End Choose Starship Button -->
-
-        
-          <div class="column is-one-third">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
-                data-target="modal-choose-destination">
-                Choose destination
-              </button>
-              <div id="chosen-destination-text"></div>
-            </div>
-          </div>
+      <div class="column is-one-third">
+        <div class="buttons">
+          <button class="js-modal-trigger button is-primary is-large" data-target="modal-start-adventure"
+            id="start-adv-button">
+            Choose Character
+          </button>
+          <div id="chosen-character-text"></div>
         </div>
-        
-<!-- Can't get this to next line to center -->
-        <div class="columns is-centered">
-          <div class="column is-full">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large" id="encounter-button"
-                data-target="modal-creature-interaction">
-                Start Journey
-              </button>
-            </div>
-          </div>
+      </div>
+
+
+      <!-- End Start Your Adventure Button -->
+
+
+
+      <!-- Start Choose Starship Button -->
+
+
+      <div class="column is-one-third">
+        <div class="buttons">
+          <button class="js-modal-trigger button is-primary is-large" id="choose-starship-button"
+            data-target="modal-choose-starship">
+            Choose Your Starship
+          </button>
+          <div id="chosen-starship-text"></div>
         </div>
+      </div>
 
-      
-        
-       
+      <!-- End Choose Starship Button -->
 
 
-        <!-- Starships Modal Revised -->
-        <div class="modal" id="modal-choose-starship">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <div class="box">
-              <div class="columns">
-                <div class="column is-full">
-                  <div class="box" id="starship-1">
-                    <span class="starship-square"></span>
-                    <div class="starship-name"></div>
-                  </div>
-                  <div class="box" id="starship-2">
-                    <span class="starship-square"></span>
-                    <div class="starship-name"></div>
-                  </div>
-                  <div class="box" id="starship-3">
-                    <span class="starship-square"></span>
-                    <div class="starship-name"></div>
-                  </div>
-                </div>
+      <div class="column is-one-third">
+        <div class="buttons">
+          <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
+            data-target="modal-choose-destination">
+            Choose destination
+          </button>
+          <div id="chosen-destination-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Can't get this to next line to center -->
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="buttons">
+          <button class="js-modal-trigger button is-primary is-large" id="encounter-button"
+            data-target="modal-creature-interaction">
+            Start Journey
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- Starships Modal Revised -->
+    <div class="modal" id="modal-choose-starship">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="starship-1">
+                <span class="starship-square"></span>
+                <div class="starship-name"></div>
+              </div>
+              <div class="box" id="starship-2">
+                <span class="starship-square"></span>
+                <div class="starship-name"></div>
+              </div>
+              <div class="box" id="starship-3">
+                <span class="starship-square"></span>
+                <div class="starship-name"></div>
               </div>
             </div>
           </div>
-          <button class="modal-close is-large" aria-label="close"></button>
         </div>
-        <!-- End choose destination modal -->
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- End choose destination modal -->
 
-     
-    
 
-  <!-- Choose destination modal -->
-  <div class="modal" id="modal-choose-destination">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="box">
-        <div class="columns">
-          <div class="column is-full">
-            <div class="box" id="planet-1">
-              <span class="planet-circle"></span>
-              <div class="planet-name"></div>
-            </div>
-            <div class="box" id="planet-2">
-              <span class="planet-circle"></span>
-              <div class="planet-name"></div>
-            </div>
-            <div class="box" id="planet-3">
-              <span class="planet-circle"></span>
-              <div class="planet-name"></div>
+
+
+    <!-- Choose destination modal -->
+    <div class="modal" id="modal-choose-destination">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="planet-1">
+                <span class="planet-circle"></span>
+                <div class="planet-name"></div>
+              </div>
+              <div class="box" id="planet-2">
+                <span class="planet-circle"></span>
+                <div class="planet-name"></div>
+              </div>
+              <div class="box" id="planet-3">
+                <span class="planet-circle"></span>
+                <div class="planet-name"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- End choose destination modal -->
+    <!-- End choose destination modal -->
 
 
-  <!-- Start Adventure modal -->
-  <div class="modal" id="modal-start-adventure">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="box">
-        <div class="columns">
-          <div class="column is-full">
-            <div class="box" id="character-1">
-              <div class="character-name"></div>
-            </div>
-            <div class="box" id="character-2">
-              <div class="character-name"></div>
-            </div>
-            <div class="box" id="character-3">
-              <div class="character-name"></div>
+    <!-- Start Adventure modal -->
+    <div class="modal" id="modal-start-adventure">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="character-1">
+                <div class="character-name"></div>
+              </div>
+              <div class="box" id="character-2">
+                <div class="character-name"></div>
+              </div>
+              <div class="box" id="character-3">
+                <div class="character-name"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <!-- End start adventure modal -->
 
-  <!-- Creature Interaction modal -->
-       <div class="modal" id="modal-creature-interaction">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <div class="box">
-              <div class="columns">
-                <div class="column is-full">
-                  <div class="box" id="destination-1">
-                    <p>Oh No! <span id="chosen-species-text">[random creature name]</span> has stopped you and given you a special task that you must complete before you can reach <span id="chosen-planet-text">[chosen planet name]</span>.</p>
+    <!-- End start adventure modal -->
 
-                    <p>You must first <span id="encounter-task-text">[encounter task here]</span> before you can proceed.</p>
-                    <button class ='button is-primary is-large' id="completeTask"> Complete Task</button>
-                              
-                   </div>
-                 </div>
-                </div>
+    <!-- Creature Interaction modal -->
+    <div class="modal" id="modal-creature-interaction">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="destination-1">
+                <p>Oh No! <span id="chosen-species-text">[random creature name]</span> has stopped you and given you a
+                  special task that you must complete before you can reach <span id="chosen-planet-text">[chosen planet
+                    name]</span>.</p>
+
+                <p>You must first <span id="encounter-task-text">[encounter task here]</span> before you can proceed.
+                </p>
+                <button class='button is-primary is-large' id="completeTask"> Complete Task</button>
+
               </div>
             </div>
           </div>
         </div>
-        <!-- End Creature Interaction modal -->
-    
+      </div>
+    </div>
+    </div>
+    <!-- End Creature Interaction modal -->
 
-  <!-- Reach Destination Modal -->
-  <div class="modal" id="modal-reach-destination">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="box">
-        <div class="columns">
-          <div class="column is-full">
-            <div class="box" id="destination-1">
-              <p>You have reached your destination <span id="reach-dest-planet-text">[chosen planet name here]</span><span class="chosen-planet-circle"></span></p>
-              <button class ='button is-primary is-large' id="start-crawl">Show Story</button>
+
+    <!-- Reach Destination Modal -->
+    <div class="modal" id="modal-reach-destination">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="destination-1">
+                <p>You have reached your destination <span id="reach-dest-planet-text">[chosen planet name
+                    here]</span><span class="chosen-planet-circle"></span></p>
+                <button class='button is-primary is-large' id="start-crawl">Show Story</button>
               </div>
-           </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
- 
-  <!-- End Reach Destination interaction modal -->
+
+    <!-- End Reach Destination interaction modal -->
 
 
-  <!-- Any other Bulma elements you want -->
+    <!-- Any other Bulma elements you want -->
 
-  <!-- Crawl Text -->
-  <div class="box is-full is-centered" id="crawl">
+    <!-- Crawl Text -->
 
-    <p>You <span id="crawl-character">[character name here]</span>, took your starship <span
-        id="crawl-starship">[starship name here]</span> to <span id="crawl-destination">[chosen planet here]</span>,
-      encountered <span id="crawl-species">[random species here]</span> and completed <span
-        id="crawl-task">[random task here].</span></p>
+    <div class="modal" id="modal-story-crawl">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div id="crawl">
+            <h2>Star Wars</h2>
+            <h3>Episode -</h3>
+            <p>You <span id="crawl-character">[character name here]</span>, took your starship <span
+                id="crawl-starship">[starship name here]</span> to <span id="crawl-destination">[chosen planet
+                here]</span>,
+              encountered <span id="crawl-species">[random species here]</span> and completed <span
+                id="crawl-task">[random task here].</span></p>
+          </div>
+            <button id="close-crawl">Close Story</button>
+        </div>
+      </div>
+    </div>
+    <!-- 
+      <div class="modal" id="modal-story-crawl">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <p class="image is-3by2">
+            <img src="spacebackground.jpg" alt="">
+          </p>
+        </div>
+      </div> -->
 
-  </div>
-  <!-- End Crawl Text -->
 
-  <script src="./script.js"></script>
+    <!-- End Crawl Text -->
+
+    <script src="./script.js"></script>
 </body>
 
 </html>

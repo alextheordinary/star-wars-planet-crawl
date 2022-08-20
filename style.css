@@ -76,12 +76,13 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(
 }
 
 #crawl {
-    width: 50%;
+    width: 100%;
     height: 300px;
     background-image: url("spacebackground.jpg");
     background-size:110% 105%;
     color: yellow;
     font-family: 'Libre Franklin';
     font-size: larger;
+    padding: 5%;
 }
 
