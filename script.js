@@ -5,7 +5,6 @@ var characterName;
 var characterNumber;
 var starshipsUrl = "https://swapi.dev/api/starships/1";
 var homeworld;
-var homeworldName;
 var starships = []; // Array of API URLs for vehicles associated with the character
 // Variables for chooseDestination
 var destinationName;
@@ -412,7 +411,6 @@ crawlStarShipEl.textContent = starshipName;
 crawlDestinationEl.textContent = destinationName;
 crawlSpeciesEl.textContent = encounterSpecies;
 crawlTaskEl.textContent = encounterTask;
-crawlHomeworldEl.textContent = homeworldName;
 }
 
 function init() {
