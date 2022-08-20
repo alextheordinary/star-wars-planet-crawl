@@ -21,15 +21,17 @@ encounterButtonEl.addEventListener("click", randomSpeciesEncounter);
 var chosenCharacterTextEl = document.querySelector("#chosen-character-text");
 var chosenStarshipTextEl = document.querySelector("#chosen-starship-text");
 var chosenDestinationTextEl = document.querySelector("#chosen-destination-text");
-var journeyCount ; 
+var journeyCount;
 var chosenSpeciesTextEl = document.querySelector("#chosen-species-text");
 var chosenPlanet = document.querySelector("#chosenPlanet");
-var encounterTaskTextEl = document.querySelector('#encounterTask');
+// var encounterTaskTextEl = document.querySelector('#encounterTask');
 var reachDestinationModalEl = document.querySelector("#modal-reach-destination");
 var startCrawlButtonEl = document.querySelector("#start-crawl");
 startCrawlButtonEl.addEventListener("click", startCrawl);
 var reachDestPlanetTextEl = document.querySelector("#reach-dest-planet-text");
-
+var completeTaskButtonEl = document.querySelector("#completeTask");
+completeTaskButtonEl.addEventListener("click", reachDestination);
+var creatureInteractionModalEL = document.querySelector("#modal-creature-interaction");
 
 
 // End variables for chooseDestination
@@ -87,7 +89,7 @@ function testSWAPI() {
 function startAdventure(event) {
   event.preventDefault();
   var startAdvModalEL = document.querySelector("#modal-start-adventure");
-  var characters = ["1", "4", "9", "10","11","13","14","18","19","22","25"];
+  var characters = ["1", "4", "9", "10", "11", "13", "14", "18", "19", "22", "25"];
   var charactersSelected = [];
   var charOneEl = document.querySelector("#character-1");
   var charTwoEl = document.querySelector("#character-2");
@@ -132,7 +134,7 @@ function startAdventure(event) {
     characterURL = boxEl.dataset.url;
     starships = boxEl.dataset.starships.split(",");
     homeworld = boxEl.dataset.homeworld;
-    chosenCharacterTextEl.textContent = 'You are now '+ characterName;
+    chosenCharacterTextEl.textContent = 'You are now ' + characterName;
     console.log(characterName);
     console.log(characterURL);
     console.log(starships);
@@ -209,7 +211,7 @@ function chooseSpacecraft(event) {
     console.log(starshipName);
     console.log(starshipURL);
 
-   
+
 
     chooseStarshipModalEL.classList.remove("is-active"); // Hides the modal
     startAdvButtonEl.classList.add("is-hidden");
@@ -219,12 +221,12 @@ function chooseSpacecraft(event) {
   }
 
   getSpacecraft(starships[0], starshipOneEl);
-  if (typeof(starships[1]) === 'undefined') {
+  if (typeof (starships[1]) === 'undefined') {
     starshipTwoEl.classList.add("is-hidden");
   } else {
     getSpacecraft(starships[1], starshipTwoEl);
   }
-  if (typeof(starships[2]) === 'undefined') {
+  if (typeof (starships[2]) === 'undefined') {
     starshipThreeEl.classList.add("is-hidden");
   } else {
     getSpacecraft(starships[2], starshipThreeEl);
@@ -280,7 +282,7 @@ function chooseDestination(event) {
         planetEl.setAttribute("data-url", data.url);
         planetEl.addEventListener("click", makeChoice);
         chooseDestModalEL.classList.add("is-active"); // Shows the modal
-        
+
       });
   }
 
@@ -320,7 +322,7 @@ function randomSpeciesEncounter(event) {
   function getSpecies(speciesNum) {
     var queryURLBase = "https://swapi.dev/api/species/";
     var queryURL = queryURLBase + speciesNum;
-        
+
     fetch(queryURL)
       .then(function (response) {
         if (response.ok) {
@@ -332,7 +334,9 @@ function randomSpeciesEncounter(event) {
         encounterSpecies = data.name;
         console.log(encounterSpecies);
 
-        chosenSpeciesTextEl.textContent=encounterSpecies;
+        chosenSpeciesTextEl.textContent = encounterSpecies;
+        var chosenSpeciesCreatureInteractionEl = document.querySelector("#chosen-species-text");
+        chosenSpeciesCreatureInteractionEl.textContent = encounterSpecies;
 
       });
   }
@@ -350,14 +354,31 @@ function randomSpeciesEncounter(event) {
         console.log(data);
         encounterTask = data.activity;
         console.log(encounterTask);
-        encounterTaskTextEl.textContent=encounterTask;
+        // encounterTaskTextEl.textContent = encounterTask;
+        var encounterTaskEl = document.querySelector("#encounter-task-text");
+        encounterTaskEl.textContent = encounterTask;
+
       });
   }
 
   getSpecies(randomSpecies);
   getActivity();
 
-  reachDestination(); // This should be attached to an event listener in the creature modal
+  // Displays creature encounter modal
+
+  // var startJourneyButtonEl = document.querySelector("#encounter-button")
+
+
+  var chosenPlanetCreatureInteractionEl = document.querySelector("#chosen-planet-text");
+  chosenPlanetCreatureInteractionEl.textContent = destinationName;
+
+
+ 
+  creatureInteractionModalEL.classList.add("is-active");
+
+
+  // startJourneyButtonEl.addEventListener("click",creatureEncounter);
+
 
 
 }
@@ -365,13 +386,14 @@ function randomSpeciesEncounter(event) {
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
 function reachDestination() {
   reachDestPlanetTextEl.textContent = destinationName;
+  creatureInteractionModalEL.classList.remove("is-active");
   reachDestinationModalEl.classList.add("is-active");
 }
 
 // Start crawl. It's either animated or static text on black background. Depends on time. Implement last. Option to play again that would call startAdventure. Parameters - none
 function startCrawl() {
   reachDestinationModalEl.classList.remove("is-active");
-  journeyCount++ ;
+  journeyCount++;
   console.log(journeyCount);
   localStorage.setItem("journey-count", JSON.stringify(journeyCount));
 }
@@ -385,7 +407,7 @@ function init() {
   // Pull journey-count from local storage and set variable journeyCount equal to it if it's not null
   var storedJourneyCount = JSON.parse(localStorage.getItem("journey-count"));
   if (storedJourneyCount !== null) {
-      journeyCount = storedJourneyCount;
+    journeyCount = storedJourneyCount;
   } else {
     journeyCount = 0;
   }
