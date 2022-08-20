@@ -354,7 +354,7 @@ function randomSpeciesEncounter(event) {
   }
 
   function getActivity() {
-    var queryURL = "http://www.boredapi.com/api/activity/";
+    var queryURL = "https://www.boredapi.com/api/activity/";
 
     fetch(queryURL)
       .then(function (response) {
