@@ -1,5 +1,8 @@
 /* initial file */
 
+p{
+    font-size: 150%;
+}
 
 .jumbo {
 
@@ -42,6 +45,16 @@
     background-color: blue;
     border-radius: 50%;
     display: inline-block;
+}
+
+.chosen-planet-circle {
+    height: 50px;
+    width: 50px;
+    background: rgb(115, 150, 190);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border-radius: 50%;
+    display: inline-block;
+
 }
 
 
