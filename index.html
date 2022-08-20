@@ -17,83 +17,65 @@
         <!-- add hero to contain this content -->
         <img src='CharImg.png' class="charImage" alt="Character Image">
         <h1 class="title">
-          Star Wars Crawl - Choose Your Own Adventure Game
+          Star Wars Planet Crawl
         </h1>
         <p class="subtitle">
-          Click Start Your Adventure to Play
+          Click Choose Character to Play!
         </p>
       </div>
     </div>
     <div class="box">
-    <div class="columns is-multiline">
+      <div class="columns is-multiline">
 
         <!-- Start Your Adventure Button -->
-       
-          <div class="column is-one-third">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large fun-color1" data-target="modal-start-adventure"
-                id="start-adv-button">
-                Choose Character
-              </button>
-              <div id="chosen-character-text"></div>
-            </div>
+
+        <div class="column is-one-third">
+          <div class="buttons">
+            <button class="js-modal-trigger button is-primary is-large fun-color1" data-target="modal-start-adventure"
+              id="start-adv-button">
+              Choose Character
+            </button>
+            <div id="chosen-character-text"></div>
           </div>
-        
-
-
-      <!-- Start Your Adventure Button -->
-
-      <div class="column is-one-third">
-        <div class="buttons">
-          <button class="js-modal-trigger button is-primary is-large" data-target="modal-start-adventure"
-            id="start-adv-button">
-            Choose Character
-          </button>
-          <div id="chosen-character-text"></div>
         </div>
-      </div>
 
-
-      <!-- End Start Your Adventure Button -->
-
-      
-          <div class="column is-one-third">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large fun-color1" id="choose-starship-button"
-                data-target="modal-choose-starship">
-                Choose Your Starship
-              </button>
-              <div id="chosen-starship-text"></div>
-            </div>
+        <div class="column is-one-third">
+          <div class="buttons">
+            <button class="js-modal-trigger button is-primary is-large fun-color1" id="choose-starship-button"
+              data-target="modal-choose-starship">
+              Choose Your Starship
+            </button>
+            <div id="chosen-starship-text"></div>
           </div>
-       
+        </div>
+
         <!-- End Choose Starship Button -->
 
-        
-          <div class="column is-one-third">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large fun-color1" id="choose-dest-button"
-                data-target="modal-choose-destination">
-                Choose destination
-              </button>
-              <div id="chosen-destination-text"></div>
-            </div>
-          </div>
-        </div>
-        
-<!-- Can't get this to next line to center -->
-        <div class="columns is-centered">
-          <div class="column is-full">
-            <div class="buttons">
-              <button class="js-modal-trigger button is-primary is-large fun-color1" id="encounter-button"
-                data-target="modal-creature-interaction">
-                Start Journey
-              </button>
-            </div>
-          </div>
 
+        <div class="column is-one-third">
+          <div class="buttons">
+            <button class="js-modal-trigger button is-primary is-large fun-color1" id="choose-dest-button"
+              data-target="modal-choose-destination">
+              Choose destination
+            </button>
+            <div id="chosen-destination-text"></div>
+          </div>
         </div>
       </div>
+
+      <!-- Can't get this to next line to center -->
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="buttons">
+            <button class="js-modal-trigger button is-primary is-large fun-color1" id="encounter-button"
+              data-target="modal-creature-interaction">
+              Start Journey
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
     </div>
 
 
@@ -180,44 +162,49 @@
       </div>
     </div>
 
-  </div>
-  
-  <!-- End start adventure modal -->
+    </div>
 
-  <!-- Creature Interaction modal -->
-       <div class="modal" id="modal-creature-interaction">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <div class="box">
-              <div class="columns">
-                <div class="column is-full">
-                  <div class="box" id="destination-1">
-                    <p>Oh No! <span id="chosen-species-text">[random creature name]</span> has stopped you and given you a special task that you must complete before you can reach <span id="chosen-planet-text">[chosen planet name]</span>.</p>
+    <!-- End start adventure modal -->
 
-                    <p>You must first <span id="encounter-task-text">[encounter task here]</span> before you can proceed.</p>
-                    <button class ='button is-primary is-large fun-color1' id="completeTask"> Complete Task</button>
-                              
-                   </div>
-                 </div>
-                </div>
+    <!-- Creature Interaction modal -->
+    <div class="modal" id="modal-creature-interaction">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="destination-1">
+                <p>Oh No! A <span id="chosen-species-text">[random creature name]</span> starship has stopped you and
+                  given you a
+                  special task that you must complete before you can reach <span id="chosen-planet-text">[chosen planet
+                    name]</span>.</p>
+
+                <p>You must first <span id="encounter-task-text">[encounter task here]</span> before you can proceed.
+                </p>
+                <button class='button is-primary is-large fun-color1' id="completeTask"> Complete Task</button>
 
               </div>
             </div>
           </div>
-        </div>
-        <!-- End Creature Interaction modal -->
-    
 
-  <!-- Reach Destination Modal -->
-  <div class="modal" id="modal-reach-destination">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="box">
-        <div class="columns">
-          <div class="column is-full">
-            <div class="box" id="destination-1">
-              <p>You have reached your destination <span id="reach-dest-planet-text">[chosen planet name here]</span><span class="chosen-planet-circle"></span></p>
-              <button class ='button is-primary is-large fun-color1' id="start-crawl">Show Story</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- End Creature Interaction modal -->
+
+
+    <!-- Reach Destination Modal -->
+    <div class="modal" id="modal-reach-destination">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-full">
+              <div class="box" id="destination-1">
+                <p>Having completed your task, you have reached your destination <span id="reach-dest-planet-text">[chosen planet name
+                    here]</span><span class="chosen-planet-circle"></span></p>
+                <button class='button is-primary is-large fun-color1' id="start-crawl">Show Story</button>
 
               </div>
             </div>
@@ -235,38 +222,29 @@
 
     <div class="modal" id="modal-story-crawl">
       <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="box">
+      <div class="modal-card">
+        <div class="modal-card-body">
           <div id="crawl">
-            <h2>Star Wars</h2>
-            <h3>Episode -</h3>
-            <p>You <span id="crawl-character">[character name here]</span>, took your starship <span
-                id="crawl-starship">[starship name here]</span> to <span id="crawl-destination">[chosen planet
+            <p class="is-size-2 has-text-centered">Star Wars</p>
+            <p class="is-size-5 has-text-centered">Episode - <span id="episode-number"></span> - The Phantom Nonsense
+            </p>
+            <p class="is-size-6 has-text-centered">You, <span id="crawl-character">[character name here]</span>, took
+              your starship <span id="crawl-starship">[starship name here]</span> to <span
+                id="crawl-destination">[chosen planet
                 here]</span>,
-              encountered <span id="crawl-species">[random species here]</span> and completed <span
-                id="crawl-task">[random task here].</span></p>
+              encountered a <span id="crawl-species">[random species here]</span> starship and completed <span
+                id="crawl-task">[random task here].</span>
+            <p class="is-size-4 has-text-centered">A winner is you!</p>
           </div>
-            <button id="close-crawl">Close Story</button>
+          <button id="close-crawl" class="button is-primary is-large fun-color1">Close Story</button>
         </div>
       </div>
     </div>
-    <!-- 
-      <div class="modal" id="modal-story-crawl">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-          <p class="image is-3by2">
-            <img src="spacebackground.jpg" alt="">
-          </p>
-        </div>
-      </div> -->
-
-
-
-  </div>
-  <!-- End Crawl Text -->
-</div>
-</div>
-  <script src="./script.js"></script>
+    </div>
+    <!-- End Crawl Text -->
+    </div>
+    </div>
+    <script src="./script.js"></script>
 
 </body>
 
