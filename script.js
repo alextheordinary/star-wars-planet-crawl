@@ -218,7 +218,7 @@ function chooseSpacecraft(event) {
     starshipThreeEl.removeEventListener("click", makeChoice);
     starshipName = boxEl.dataset.name;
     starshipURL = boxEl.dataset.url;
-    chosenStarshipTextEl.textContent = starshipName;
+    chosenStarshipTextEl.textContent = 'Your starship is ' + starshipName;
     console.log(starshipName);
     console.log(starshipURL);
 
@@ -305,7 +305,7 @@ function chooseDestination(event) {
     destinationName = boxEl.dataset.name;
     destinationClimate = boxEl.dataset.climate;
     destinationURL = boxEl.dataset.url;
-    chosenDestinationTextEl.textContent = destinationName;
+    chosenDestinationTextEl.textContent = 'Your destination is the planet ' + destinationName;
     console.log(destinationName);
     console.log(destinationClimate);
     console.log(destinationURL);
