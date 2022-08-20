@@ -42,6 +42,7 @@ completeTaskButtonEl.addEventListener("click", reachDestination);
 var creatureInteractionModalEL = document.querySelector("#modal-creature-interaction");
 var closeCrawlButtonEl = document.querySelector("#close-crawl")
 closeCrawlButtonEl.addEventListener("click", closeCrawl);
+var crawlEpisodeTextEl = document.querySelector("#episode-number");
 
 
 
@@ -414,12 +415,14 @@ function startCrawl() {
   crawlDestinationEl.textContent = destinationName;
   crawlSpeciesEl.textContent = encounterSpecies;
   crawlTaskEl.textContent = encounterTask;
+  crawlEpisodeTextEl .textContent = journeyCount;
 
   crawlModalEl.classList.add("is-active");
 }
 
 function closeCrawl (){
   crawlModalEl.classList.remove("is-active");
+  init();
 }
 
 function init() {
@@ -427,6 +430,9 @@ function init() {
   chooseSpacecraftButtonEl.classList.add("is-hidden");
   chooseDestButtonEl.classList.add("is-hidden");
   encounterButtonEl.classList.add("is-hidden");
+  chosenCharacterTextEl.textContent = ""; 
+  chosenStarshipTextEl.textContent = "";  
+  chosenDestinationTextEl.textContent = ""; 
 
   // Pull journey-count from local storage and set variable journeyCount equal to it if it's not null
   var storedJourneyCount = JSON.parse(localStorage.getItem("journey-count"));
