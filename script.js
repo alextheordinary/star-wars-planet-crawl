@@ -22,8 +22,6 @@ var chosenStarshipTextEl = document.querySelector("#chosen-starship-text");
 var chosenDestinationTextEl = document.querySelector("#chosen-destination-text");
 var journeyCount;
 var chosenSpeciesTextEl = document.querySelector("#chosen-species-text");
-var chosenPlanet = document.querySelector("#chosenPlanet");
-// var encounterTaskTextEl = document.querySelector('#encounterTask');
 var reachDestinationModalEl = document.querySelector("#modal-reach-destination");
 var startCrawlButtonEl = document.querySelector("#start-crawl");
 startCrawlButtonEl.addEventListener("click", startCrawl);
@@ -316,8 +314,7 @@ function chooseDestination(event) {
     chooseSpacecraftButtonEl.classList.add("is-hidden");
     chooseDestButtonEl.classList.add("is-hidden");
     encounterButtonEl.classList.remove("is-hidden");
-    chosenPlanet.textContent = destinationName;
-  }
+     }
 
   getPlanet(planets[1], planetOneEl);
   getPlanet(planets[2], planetTwoEl);
