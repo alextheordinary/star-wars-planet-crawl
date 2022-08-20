@@ -25,7 +25,10 @@ var journeyCount ;
 var chosenSpeciesTextEl = document.querySelector("#chosen-species-text");
 var chosenPlanet = document.querySelector("#chosenPlanet");
 var encounterTaskTextEl = document.querySelector('#encounterTask');
-
+var reachDestinationModalEl = document.querySelector("#modal-reach-destination");
+var startCrawlButtonEl = document.querySelector("#start-crawl");
+startCrawlButtonEl.addEventListener("click", startCrawl);
+var reachDestPlanetTextEl = document.querySelector("#reach-dest-planet-text");
 
 
 
@@ -353,19 +356,21 @@ function randomSpeciesEncounter(event) {
 
   getSpecies(randomSpecies);
   getActivity();
-  // This needs to actually be called in reachDestination
-  startCrawl();
+
+  reachDestination(); // This should be attached to an event listener in the creature modal
 
 
 }
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
 function reachDestination() {
-
+  reachDestPlanetTextEl.textContent = destinationName;
+  reachDestinationModalEl.classList.add("is-active");
 }
 
 // Start crawl. It's either animated or static text on black background. Depends on time. Implement last. Option to play again that would call startAdventure. Parameters - none
 function startCrawl() {
+  reachDestinationModalEl.classList.remove("is-active");
   journeyCount++ ;
   console.log(journeyCount);
   localStorage.setItem("journey-count", JSON.stringify(journeyCount));
