@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Star Wars Planet Crawl</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -191,9 +192,32 @@
   </div>
   <!-- End creature interaction modal -->
 
+  <!-- Reach Destination Modal -->
+  <div class="modal" id="modal-reach-destination">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <div class="columns">
+          <div class="column is-full">
+            <div class="box" id="destination-1">
+              <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>, encountered <span class="randomSpecies">[random species here]</span> and completed <span class="randomTask">[random task here].</span></p>
+                        
+              <div class="creature-name"></div>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Reach Destination interaction modal -->
 
 
   <!-- Any other Bulma elements you want -->
+  <div class="box" id="crawl">
+    <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>, encountered <span class="randomSpecies">[random species here]</span> and completed <span class="randomTask">[random task here].</span></p>
+  </div>
+
   <script src="./script.js"></script>
 </body>
 
