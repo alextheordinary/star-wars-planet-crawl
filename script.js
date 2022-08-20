@@ -21,9 +21,11 @@ encounterButtonEl.addEventListener("click", randomSpeciesEncounter);
 var chosenCharacterTextEl = document.querySelector("#chosen-character-text");
 var chosenStarshipTextEl = document.querySelector("#chosen-starship-text");
 var chosenDestinationTextEl = document.querySelector("#chosen-destination-text");
+var journeyCount ; 
 var chosenSpeciesTextEl = document.querySelector("#chosen-species-text");
 var chosenPlanet = document.querySelector("#chosenPlanet");
 var encounterTaskTextEl = document.querySelector('#encounterTask');
+
 
 
 
@@ -82,7 +84,7 @@ function testSWAPI() {
 function startAdventure(event) {
   event.preventDefault();
   var startAdvModalEL = document.querySelector("#modal-start-adventure");
-  var characters = ["1", "4", "9", "10"];
+  var characters = ["1", "4", "9", "10","11","13","14","18","19","22","25"];
   var charactersSelected = [];
   var charOneEl = document.querySelector("#character-1");
   var charTwoEl = document.querySelector("#character-2");
@@ -90,7 +92,7 @@ function startAdventure(event) {
 
 
   while (charactersSelected.length < 3) {
-    var randomCharNum = (Math.floor(Math.random() * 4)).toString();
+    var randomCharNum = (Math.floor(Math.random() * characters.length)).toString();
     if (charactersSelected.indexOf(characters[randomCharNum]) === -1) {
       charactersSelected.push(characters[randomCharNum]);
     }
@@ -167,6 +169,10 @@ function chooseSpacecraft(event) {
   starshipOneEl.querySelector(".starship-name").textContent = "";
   starshipTwoEl.querySelector(".starship-name").textContent = "";
   starshipThreeEl.querySelector(".starship-name").textContent = "";
+  starshipTwoEl.setAttribute("data-name", "");
+  starshipTwoEl.setAttribute("data-url", "");
+  starshipThreeEl.setAttribute("data-name", "");
+  starshipThreeEl.setAttribute("data-url", "");
 
   // max at 3 ships, if array is null don't run code
 
@@ -184,6 +190,7 @@ function chooseSpacecraft(event) {
         starshipEl.setAttribute("data-name", data.name);
         starshipEl.setAttribute("data-url", data.url);
         starshipEl.addEventListener("click", makeChoice);
+        starshipEl.classList.remove("is-hidden");
         chooseStarshipModalEL.classList.add("is-active"); // Shows the modal
       });
   }
@@ -208,13 +215,19 @@ function chooseSpacecraft(event) {
     encounterButtonEl.classList.add("is-hidden");
   }
 
-  // if starships [0] === null hide boxes use is-hidden
-
   getSpacecraft(starships[0], starshipOneEl);
-  getSpacecraft(starships[1], starshipTwoEl);
-  getSpacecraft(starships[2], starshipThreeEl);
-
+  if (typeof(starships[1]) === 'undefined') {
+    starshipTwoEl.classList.add("is-hidden");
+  } else {
+    getSpacecraft(starships[1], starshipTwoEl);
+  }
+  if (typeof(starships[2]) === 'undefined') {
+    starshipThreeEl.classList.add("is-hidden");
+  } else {
+    getSpacecraft(starships[2], starshipThreeEl);
+  }
 }
+
 // starship1Btn.addEventListener("click", chooseSpacecraft);
 
 
@@ -340,25 +353,11 @@ function randomSpeciesEncounter(event) {
 
   getSpecies(randomSpecies);
   getActivity();
+  // This needs to actually be called in reachDestination
+  startCrawl();
 
 
 }
-//kerri making math things
-/*while (creature.length < 3) {
-    var randomCreatureNum = (Math.floor(Math.random() * 20) + 1).toString();
-    if (creatures.indexOf(randomCreatureNum) === -1) {
-      planets.push(randomPlanetNum);
-    }
-  }*/
-
-/*var randomSpeciesEncounter = function(min, max) {
-    var value = Math.floor(Math.random() * (max - min) + min);
-  
-    return value;
-  };*/
-
-
-
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
 function reachDestination() {
@@ -367,7 +366,9 @@ function reachDestination() {
 
 // Start crawl. It's either animated or static text on black background. Depends on time. Implement last. Option to play again that would call startAdventure. Parameters - none
 function startCrawl() {
-
+  journeyCount++ ;
+  console.log(journeyCount);
+  localStorage.setItem("journey-count", JSON.stringify(journeyCount));
 }
 
 function init() {
@@ -375,6 +376,15 @@ function init() {
   chooseSpacecraftButtonEl.classList.add("is-hidden");
   chooseDestButtonEl.classList.add("is-hidden");
   encounterButtonEl.classList.add("is-hidden");
+
+  // Pull journey-count from local storage and set variable journeyCount equal to it if it's not null
+  var storedJourneyCount = JSON.parse(localStorage.getItem("journey-count"));
+  if (storedJourneyCount !== null) {
+      journeyCount = storedJourneyCount;
+  } else {
+    journeyCount = 0;
+  }
+
 }
 
 init();
