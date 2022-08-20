@@ -353,7 +353,7 @@ function randomSpeciesEncounter(event) {
   function getActivity() {
     var queryURL = "https://www.boredapi.com/api/activity/";
 
-    fetch(queryURL)
+    fetch(queryURL, {referrerPolicy: "unsafe-url"})
       .then(function (response) {
         if (response.ok) {
           return response.json();
