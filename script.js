@@ -18,6 +18,9 @@ var chooseSpacecraftButtonEl = document.querySelector('#choose-starship-button')
 chooseSpacecraftButtonEl.addEventListener("click", chooseSpacecraft);
 var encounterButtonEl = document.querySelector("#encounter-button");
 encounterButtonEl.addEventListener("click", randomSpeciesEncounter);
+var chosenCharacterTextEl = document.querySelector("#chosen-character-text");
+var chosenStarshipTextEl = document.querySelector("#chosen-starship-text");
+var chosenDestinationTextEl = document.querySelector("#chosen-destination-text");
 
 
 // End variables for chooseDestination
@@ -120,12 +123,17 @@ function startAdventure(event) {
     characterURL = boxEl.dataset.url;
     starships = boxEl.dataset.starships.split(",");
     homeworld = boxEl.dataset.homeworld;
+    chosenCharacterTextEl.textContent = characterName;
     console.log(characterName);
     console.log(characterURL);
     console.log(starships);
     console.log(homeworld);
 
     startAdvModalEL.classList.remove("is-active"); // Hides the modal
+    startAdvButtonEl.classList.add("is-hidden");
+    chooseSpacecraftButtonEl.classList.remove("is-hidden");
+    chooseDestButtonEl.classList.add("is-hidden");
+    encounterButtonEl.classList.add("is-hidden");
   }
 
   getCharacter(charactersSelected[0], charOneEl);
@@ -183,10 +191,17 @@ function chooseSpacecraft(event) {
     starshipThreeEl.removeEventListener("click", makeChoice);
     starshipName = boxEl.dataset.name;
     starshipURL = boxEl.dataset.url;
+    chosenStarshipTextEl.textContent = starshipName;
     console.log(starshipName);
     console.log(starshipURL);
 
+   
+
     chooseStarshipModalEL.classList.remove("is-active"); // Hides the modal
+    startAdvButtonEl.classList.add("is-hidden");
+    chooseSpacecraftButtonEl.classList.add("is-hidden");
+    chooseDestButtonEl.classList.remove("is-hidden");
+    encounterButtonEl.classList.add("is-hidden");
   }
 
   // if starships [0] === null hide boxes use is-hidden
@@ -256,11 +271,16 @@ function chooseDestination(event) {
     destinationName = boxEl.dataset.name;
     destinationClimate = boxEl.dataset.climate;
     destinationURL = boxEl.dataset.url;
+    chosenDestinationTextEl.textContent = destinationName;
     console.log(destinationName);
     console.log(destinationClimate);
     console.log(destinationURL);
 
     chooseDestModalEL.classList.remove("is-active"); // Hides the modal
+    startAdvButtonEl.classList.add("is-hidden");
+    chooseSpacecraftButtonEl.classList.add("is-hidden");
+    chooseDestButtonEl.classList.add("is-hidden");
+    encounterButtonEl.classList.remove("is-hidden");
   }
 
   getPlanet(planets[1], planetOneEl);
@@ -331,7 +351,7 @@ function randomSpeciesEncounter(event) {
 
 
 // Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
-function reachDestination(destinationName, climate) {
+function reachDestination() {
 
 }
 
@@ -340,3 +360,11 @@ function startCrawl() {
 
 }
 
+function init() {
+  startAdvButtonEl.classList.remove("is-hidden");
+  chooseSpacecraftButtonEl.classList.add("is-hidden");
+  chooseDestButtonEl.classList.add("is-hidden");
+  encounterButtonEl.classList.add("is-hidden");
+}
+
+init();

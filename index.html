@@ -39,6 +39,7 @@
                 id="start-adv-button">
                 Choose Character
               </button>
+              <div id="chosen-character-text"></div>
             </div>
           </div>
         </div>
@@ -56,61 +57,64 @@
                 data-target="modal-choose-starship">
                 Choose Your Starship
               </button>
+              <div id="chosen-starship-text"></div>
             </div>
           </div>
         </div>
         <!-- End Choose Starship Button -->
-        
-    <div class="columns">
-      <div class="column">
-        <div class="buttons">
-          <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
-          data-target="modal-choose-destination">
-          Choose destination
-        </button>
-        </div>
-      </div>
-    </div>
 
-    <div class="columns">
-      <div class="column">
-        <div class="buttons">
-          <button class="js-modal-trigger button is-primary is-large" id="encounter-button" data-target="modal-encounter">
-            Start Journey
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Starships Modal Revised -->
-    <div class="modal" id="modal-choose-starship">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="box">
-          <div class="columns">
-            <div class="column is-full">
-              <div class="box" id="starship-1">
-                <span class="starship-square"></span>
-                <div class="starship-name"></div>
-              </div>
-              <div class="box" id="starship-2">
-                <span class="starship-square"></span>
-                <div class="starship-name"></div>
-              </div>
-              <div class="box" id="starship-3">
-                <span class="starship-square"></span>
-                <div class="starship-name"></div>
-              </div>
+        <div class="columns">
+          <div class="column">
+            <div class="buttons">
+              <button class="js-modal-trigger button is-primary is-large" id="choose-dest-button"
+                data-target="modal-choose-destination">
+                Choose destination
+              </button>
+              <div id="chosen-destination-text"></div>
             </div>
           </div>
         </div>
-      </div>
-      <button class="modal-close is-large" aria-label="close"></button>
-    </div>
-    <!-- End choose destination modal -->
 
-    </div>
+        <div class="columns">
+          <div class="column">
+            <div class="buttons">
+              <button class="js-modal-trigger button is-primary is-large" id="encounter-button"
+                data-target="modal-encounter">
+                Start Journey
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Starships Modal Revised -->
+        <div class="modal" id="modal-choose-starship">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <div class="columns">
+                <div class="column is-full">
+                  <div class="box" id="starship-1">
+                    <span class="starship-square"></span>
+                    <div class="starship-name"></div>
+                  </div>
+                  <div class="box" id="starship-2">
+                    <span class="starship-square"></span>
+                    <div class="starship-name"></div>
+                  </div>
+                  <div class="box" id="starship-3">
+                    <span class="starship-square"></span>
+                    <div class="starship-name"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+        <!-- End choose destination modal -->
+
+      </div>
     </div>
     </div>
   </section>
@@ -198,13 +202,13 @@
           <div class="column is-full">
             <div class="box" id="destination-1">
               <p>You have reached your destination <span class="chosenPlanet">[chosen planet name here]</span><span class="chosen-planet-circle"></span></p>
-                        
-             </div>
+              </div>
            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
   <!-- End Reach Destination interaction modal -->
 
@@ -213,7 +217,10 @@
 
   <!-- Crawl Text -->
   <div class="box" id="crawl">
-    <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>, encountered <span class="randomSpecies">[random species here]</span> and completed <span class="randomTask">[random task here].</span></p>
+    <p>You <span class="chosenCharacter">[character name here]</span>, took your starship <span
+        class="chosenStarship">[starship name here]</span> to <span class="chosenPlanet">[chosen planet here]</span>,
+      encountered <span class="randomSpecies">[random species here]</span> and completed <span
+        class="randomTask">[random task here].</span></p>
   </div>
   <!-- End Crawl Text -->
 
