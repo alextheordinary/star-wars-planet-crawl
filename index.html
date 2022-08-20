@@ -174,14 +174,12 @@
           <div class="columns">
             <div class="column is-full">
               <div class="box" id="destination-1">
-                <p>Oh No! A <span id="chosen-species-text">[random creature name]</span> starship has stopped you and
-                  given you a
-                  special task that you must complete before you can reach <span id="chosen-planet-text">[chosen planet
+                <p>Oh No! A <span id="chosen-species-text">[random creature name]</span> starship has stopped you and forced you to answer this question before you can reach <span id="chosen-planet-text">[chosen planet
                     name]</span>.</p>
 
-                <p>You must first <span id="encounter-task-text">[encounter task here]</span> before you can proceed.
-                </p>
-                <button class='button is-primary is-large fun-color1' id="completeTask"> Complete Task</button>
+                <p>True or false? <span id="encounter-task-text">[encounter task here]</span></p>
+                <button class='button is-primary is-large fun-color1' id="true-button" data-answer="True">True</button>
+                <button class='button is-primary is-large fun-color1' id="false-button" data-answer="False">False</button>
 
               </div>
             </div>
@@ -202,7 +200,8 @@
           <div class="columns">
             <div class="column is-full">
               <div class="box" id="destination-1">
-                <p>Having completed your task, you have reached your destination <span id="reach-dest-planet-text">[chosen planet name
+                <p id="quiz-result"></p>
+                <p>Soon after, you reach your destination of <span id="reach-dest-planet-text">[chosen planet name
                     here]</span><span class="chosen-planet-circle"></span></p>
                 <button class='button is-primary is-large fun-color1' id="start-crawl">Show Story</button>
 
@@ -226,15 +225,15 @@
         <div class="modal-card-body">
           <div id="crawl">
             <p class="is-size-2 has-text-centered">Star Wars</p>
-            <p class="is-size-5 has-text-centered">Episode - <span id="episode-number"></span> - The Phantom Nonsense
+            <p class="is-size-5 has-text-centered">Episode - <span id="episode-number"></span> - The Phantom <span id="correct-count-text"></span> Correct Answers
             </p>
             <p class="is-size-6 has-text-centered">You, <span id="crawl-character">[character name here]</span>, took
-              your starship <span id="crawl-starship">[starship name here]</span> to <span
+              your <span id="crawl-starship">[starship name here]</span> to <span
                 id="crawl-destination">[chosen planet
                 here]</span>,
-              encountered a <span id="crawl-species">[random species here]</span> starship and completed <span
-                id="crawl-task">[random task here].</span>
-            <p class="is-size-4 has-text-centered">A winner is you!</p>
+              encountered a <span id="crawl-species">[random species here]</span> starship and competed in glorious trivial pursuit.
+              </p>
+            <p class="is-size-4 has-text-centered" id="is-you-text"></p>
           </div>
           <button id="close-crawl" class="button is-primary is-large fun-color1">Close Story</button>
         </div>
