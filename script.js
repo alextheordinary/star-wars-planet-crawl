@@ -1,17 +1,11 @@
-// Initial js file for the project
-
 // Variables
 var characterName;
-var characterNumber;
-var starshipsUrl = "https://swapi.dev/api/starships/1";
 var homeworld;
 var starships = []; // Array of API URLs for vehicles associated with the character
-// Variables for chooseDestination
 var destinationName;
 var destinationClimate;
 var destinationURL;
 var chooseDestButtonEl = document.querySelector("#choose-dest-button");
-var logButtonEl = document.querySelector("#log-planet-one");
 chooseDestButtonEl.addEventListener("click", chooseDestination);
 var chooseSpacecraftButtonEl = document.querySelector('#choose-starship-button')
 chooseSpacecraftButtonEl.addEventListener("click", chooseSpacecraft);
@@ -43,67 +37,25 @@ var closeCrawlButtonEl = document.querySelector("#close-crawl")
 closeCrawlButtonEl.addEventListener("click", closeCrawl);
 var crawlEpisodeTextEl = document.querySelector("#episode-number");
 
-
-
-// End variables for chooseDestination
-// Variables for start adventure
 var startAdvButtonEl = document.querySelector("#start-adv-button");
 startAdvButtonEl.addEventListener("click", startAdventure);
 var characterURL;
-// End variables for start adventure
-// Variables for randomSpeciesEncounter
+
 var encounterSpecies;
 var encounterTask;
 var encounterAnswer;
 var encounterCorrectAnswer;
 var quizResult;
+var chosenPlanetCreatureInteractionEl = document.querySelector("#chosen-planet-text");
+var encounterTaskEl = document.querySelector("#encounter-task-text");
 var encounterQuizResultEl = document.querySelector("#quiz-result");
 var isYouTextEl = document.querySelector("#is-you-text");
 var correctCount;
 var correctCountEl = document.querySelector("#correct-count-text");
-// End variables for randomSpecies
-// Test function for calling the Bored API
-function testBored() {
-  var queryURL = "http://www.boredapi.com/api/activity/";
-
-  fetch(queryURL)
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      }
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
-
-
-// Test function for calling the Star Wars API (SWAPI)
-function testSWAPI() {
-  var queryURL = "https://swapi.dev/api/";
-
-  fetch(queryURL)
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      }
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
-
-//testBored();
-//testSWAPI();
-//startAdventure();
-
-// For testing purposes
-//var dummyStarships = ["https://swapi.dev/api/starships/12/", "https://swapi.dev/api/starships/13/"] ;
-//chooseSpacecraft(dummyStarships);
 
 // Functions
 
-// Start the Adventure. Reset variables. Pop up the modal for Choose Your Character. 3 random characters (from a predetermined list) for name and portrait will be displayed. A character can be chosen by clicking anywhere in the container for that character. Clicking on that character stores the character name, character number, homeworld, and starships in global variables. Calls function chooseSpacecraft()
+// Pop up the modal for Choose Your Character. 3 random character names (from a predetermined list) will be displayed. A character can be chosen by clicking anywhere in the container for that character. Clicking on that character stores the character name, character number, homeworld, and starships in global variables. 
 function startAdventure(event) {
   event.preventDefault();
   var startAdvModalEL = document.querySelector("#modal-start-adventure");
@@ -168,16 +120,7 @@ function startAdventure(event) {
 
 }
 
-// Choose your Spacecraft. Pop up the modal for Choosing your Spacecraft. This is populated using API calls to the starships API. A call needs to be made for each starship. Display the names of starships in buttons. Clicking on a button saves the name of the starship to chosenStarship variable. Calls function chooseDestination. Parameters - an array of starship API URLs from the people API call in startAdventure
-
-// There are 36 starships to choose from, I chose 
-// Millenium Falcon: "https://swapi.dev/api/starships/10/" (Hans Solo)
-// Xwing: "https://swapi.dev/api/starships/12/" (Luke Skywalker)
-// TIEX1: "https://swapi.dev/api/starships/13/" (Darth Vader)
-
-
-
-
+// Choose your Spacecraft. Pop up the modal for Choosing your Spacecraft. This is populated using API calls to the starships API. A call needs to be made for each starship. Display the names of starships. Clicking on a button saves the name of the starship to starshipName variable. 
 
 function chooseSpacecraft(event) {
   event.preventDefault();
@@ -192,8 +135,6 @@ function chooseSpacecraft(event) {
   starshipTwoEl.setAttribute("data-url", "");
   starshipThreeEl.setAttribute("data-name", "");
   starshipThreeEl.setAttribute("data-url", "");
-
-  // max at 3 ships, if array is null don't run code
 
   function getSpacecraft(starshipNum, starshipEl) {
     var queryURL = starshipNum;
@@ -232,6 +173,7 @@ function chooseSpacecraft(event) {
     encounterButtonEl.classList.add("is-hidden");
   }
 
+  // Logic to handle cases with less than 3 starships
   getSpacecraft(starships[0], starshipOneEl);
   if (typeof (starships[1]) === 'undefined') {
     starshipTwoEl.classList.add("is-hidden");
@@ -245,12 +187,8 @@ function chooseSpacecraft(event) {
   }
 }
 
-// starship1Btn.addEventListener("click", chooseSpacecraft);
+// Choose your destination planet. Pop up the modal for Choosing your destination. This is populated by using API calls to pick 3 unique random planets. These cannot be the homeworld. Need logic to check if homeworld and/or if the planet has already been chosen. Displays each planet name and a circle. A planet can be chosen by clicking anywhere in the container for that planet. Call randomSpeciesEncounter. 
 
-
-
-
-// Choose your destination planet. Pop up the modal for Choosing your destination. This is populated by using API calls to pick 3 random planets. These cannot be the homeworld. Need logic to check if homeworld and/or if the planet has already been chosen. Displays each planet name and a circle that is colored based on climate type. (Note: need to define which climate types go to which colors). A planet can be chosen by clicking anywhere in the container for that planet. Call randomSpeciesEncounter. Parameters - starting homeworld API URL
 function chooseDestination(event) {
   event.preventDefault();
   var chooseDestModalEL = document.querySelector("#modal-choose-destination");
@@ -276,7 +214,7 @@ function chooseDestination(event) {
     }
   }
 
-  // Makes a fetch request to the planets API. Sets the data attributes for name, climate, and url using api response data and then makes the modal active. Still need to alter background color of circle class elements based on climate.
+  // Makes a fetch request to the planets API. Sets the data attributes for name, climate, and url using api response data and then makes the modal active. 
   function getPlanet(planetNum, planetEl) {
     var queryURLBase = "https://swapi.dev/api/planets";
     var queryURL = queryURLBase + "/" + planetNum;
@@ -321,10 +259,10 @@ function chooseDestination(event) {
 
 }
 
-// Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. Need to check if any criteria are needed (maybe some species aren't spacefaring?). Displays a message saying that a group of [species name] have yanked your ship out of hyperspace. They're willing to let you go if you perform a random task. This task is populated by pulling a random task from the Bored API (criteria TBD). Call reachDestination(). Parameters - none
+// Random Species Encounter. Pop up the modal for being stopped by a group of a random species. This is populated by using API calls to pick a random species. This species stops you and forces you to answer a true/false question in order to proceed. Question is obtained from opentdb API. Clicking true or false will call reachDestination()
 function randomSpeciesEncounter(event) {
   event.preventDefault();
-  var randomSpecies = (Math.floor(Math.random() * 37)).toString();
+  var randomSpecies = (Math.floor(Math.random() * 37) + 1).toString();
 
 
   function getSpecies(speciesNum) {
@@ -358,10 +296,8 @@ function randomSpeciesEncounter(event) {
       })
       .then(function (data) {
         encounterTask = data.results[0].question;
-        var encounterTaskEl = document.querySelector("#encounter-task-text");
         encounterTaskEl.innerHTML = encounterTask;
         encounterCorrectAnswer = data.results[0].correct_answer;
-        console.log("Correct answer " + encounterCorrectAnswer);
       });
   }
 
@@ -369,26 +305,11 @@ function randomSpeciesEncounter(event) {
   getQuestion();
 
 
-  // Displays creature encounter modal
-
-  // var startJourneyButtonEl = document.querySelector("#encounter-button")
-
-
-  var chosenPlanetCreatureInteractionEl = document.querySelector("#chosen-planet-text");
   chosenPlanetCreatureInteractionEl.textContent = destinationName;
-
-
-
   creatureInteractionModalEL.classList.add("is-active");
-
-
-  // startJourneyButtonEl.addEventListener("click",creatureEncounter);
-
-
-
 }
 
-// Reach destination. Pop up the modal saying that you've reached your destination planet. Display a circle of the planet again in a larger size. Display a button to start the crawl summarizing the journey. Calls startCrawl(). Parameters - destination planet name and climate type
+// Pop up a modal that will say whether or not the question was answered correctly. This is followed by a message about reaching your destination. Clicking Show Story button will call startCrawl()
 function reachDestination(event) {
   encounterAnswer = event.target.dataset.answer;
   reachDestPlanetTextEl.textContent = destinationName;
@@ -403,7 +324,7 @@ function reachDestination(event) {
   reachDestinationModalEl.classList.add("is-active");
 }
 
-// Start crawl. It's either animated or static text on black background. Depends on time. Implement last. Option to play again that would call startAdventure. Parameters - none
+// Start crawl. Pops up a modal that will display a summary of the game in the "Star Wars Crawl" style. Summary includes persistent local storage variables for # of games played and # of questions answered correctly. Sets these variables to local storage. Clicking the Close Story button will hide the modal and run the init() function
 function startCrawl() {
   reachDestinationModalEl.classList.remove("is-active");
   journeyCount++;
@@ -430,6 +351,7 @@ function closeCrawl (){
   init();
 }
 
+// Initializes variables and display state of buttons and variable text fields
 function init() {
   startAdvButtonEl.classList.remove("is-hidden");
   chooseSpacecraftButtonEl.classList.add("is-hidden");
@@ -442,8 +364,7 @@ function init() {
   encounterCorrectAnswer = null;
   quizResult = null;
 
-
-  // Pull journey-count from local storage and set variable journeyCount equal to it if it's not null
+  // Pull journey-count and correct-count from local storage and set variables journeyCount and correctCount equal to those values if they're not null
   var storedJourneyCount = JSON.parse(localStorage.getItem("journey-count"));
   var storedCorrectCount = JSON.parse(localStorage.getItem("correct-count"));
   if (storedJourneyCount !== null) {
